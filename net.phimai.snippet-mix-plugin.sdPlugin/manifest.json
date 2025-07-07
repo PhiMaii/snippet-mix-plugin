@@ -1,0 +1,97 @@
+{
+  "Name": "snippet-mix-plugin",
+  "Version": "0.1.0.0",
+  "Author": "PhiMai",
+  "Actions": [
+    {
+      "Name": "Counter",
+      "UUID": "net.phimai.snippet-mix-plugin.increment",
+      "Icon": "imgs/actions/counter/icon",
+      "Tooltip": "Displays a count, which increments by one on press.",
+      "PropertyInspectorPath": "ui/increment-counter.html",
+      "Controllers": ["Keypad"],
+      "States": [
+        {
+          "Image": "imgs/actions/counter/icon",
+          "TitleAlignment": "middle"
+        }
+      ]
+    },
+    {
+      "Name": "Load snippet",
+      "UUID": "net.phimai.snippet-mix-plugin.load-snippet",
+      "Icon": "imgs/actions/load-snippet/icon",
+      "Tooltip": "Displays a count, which increments by one on press.",
+      "PropertyInspectorPath": "ui/increment-counter.html",
+      "States": [
+        {
+          "Image": "imgs/actions/load-snippet/key",
+          "TitleAlignment": "middle"
+        }
+      ]
+    },
+    {
+      "Name": "Row Up",
+      "UUID": "net.phimai.snippet-mix-plugin.row-up",
+      "Icon": "imgs/actions/row-up/icon",
+      "Tooltip": "Displays a count, which increments by one on press.",
+      "PropertyInspectorPath": "ui/increment-counter.html",
+      "States": [
+        {
+          "Image": "imgs/actions/row-up/key",
+          "TitleAlignment": "middle"
+        }
+      ]
+    },
+    {
+      "Name": "Row Down",
+      "UUID": "net.phimai.snippet-mix-plugin.row-down",
+      "Icon": "imgs/actions/row-down/icon",
+      "Tooltip": "Displays a count, which increments by one on press.",
+      "PropertyInspectorPath": "ui/increment-counter.html",
+      "States": [
+        {
+          "Image": "imgs/actions/row-down/key",
+          "TitleAlignment": "middle"
+        }
+      ]
+    },
+    {
+      "Name": "Open More",
+      "UUID": "net.phimai.snippet-mix-plugin.open-more",
+      "Icon": "imgs/actions/open-more/icon",
+      "Tooltip": "Displays a count, which increments by one on press.",
+      "PropertyInspectorPath": "ui/increment-counter.html",
+      "States": [
+        {
+          "Image": "imgs/actions/open-more/key",
+          "TitleAlignment": "middle"
+        }
+      ]
+    }
+  ],
+  "Category": "Snippet Mix",
+  "CategoryIcon": "imgs/plugin/category-icon",
+  "CodePath": "bin/plugin.js",
+  "Description": "A plugin to interface with snippet mix to remote control a soundcraft si expression",
+  "Icon": "imgs/plugin/marketplace",
+  "SDKVersion": 2,
+  "Software": {
+    "MinimumVersion": "6.5"
+  },
+  "OS": [
+    {
+      "Platform": "mac",
+      "MinimumVersion": "12"
+    },
+    {
+      "Platform": "windows",
+      "MinimumVersion": "10"
+    }
+  ],
+  "Nodejs": {
+    "Version": "20",
+    "Debug": "enabled"
+  },
+  "UUID": "net.phimai.snippet-mix-plugin"
+}

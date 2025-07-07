@@ -1,0 +1,27 @@
+{
+	/* JSON schemas */
+	"json.schemas": [
+		{
+			"fileMatch": [
+				"**/manifest.json"
+			],
+			"url": "https://schemas.elgato.com/streamdeck/plugins/manifest.json"
+		},
+		{
+			"fileMatch": [
+				"**/layouts/*.json"
+			],
+			"url": "https://schemas.elgato.com/streamdeck/plugins/layout.json"
+		}
+	],
+	"files.exclude": {
+		"**/.git": true,
+		"**/.svn": true,
+		"**/.hg": true,
+		"**/.DS_Store": true,
+		"**/Thumbs.db": true,
+		"node_modules": true,
+		".vscode": true
+	},
+	"explorerExclude.backup": {}
+}
