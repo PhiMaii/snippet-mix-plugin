@@ -90,6 +90,19 @@
           "TitleAlignment": "middle"
         }
       ]
+    },
+    {
+      "Name": "Clear All",
+      "UUID": "net.phimai.snippet-mix-plugin.clear-all",
+      "Icon": "imgs/actions/clear-all/icon",
+      "Tooltip": "Displays a count, which increments by one on press.",
+      "PropertyInspectorPath": "ui/increment-counter.html",
+      "States": [
+        {
+          "Image": "imgs/actions/clear-all/key",
+          "TitleAlignment": "middle"
+        }
+      ]
     }
   ],
   "Category": "Snippet Mix",
