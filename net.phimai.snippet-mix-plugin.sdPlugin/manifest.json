@@ -23,9 +23,14 @@
       "Icon": "imgs/actions/load-snippet/icon",
       "Tooltip": "Displays a count, which increments by one on press.",
       "PropertyInspectorPath": "ui/increment-counter.html",
+      "DisableAutomaticStates": true,
       "States": [
         {
-          "Image": "imgs/actions/load-snippet/key",
+          "Image": "imgs/actions/load-snippet/key-unused",
+          "TitleAlignment": "middle"
+        },
+        {
+          "Image": "imgs/actions/load-snippet/key-used",
           "TitleAlignment": "middle"
         }
       ]
@@ -65,6 +70,10 @@
       "States": [
         {
           "Image": "imgs/actions/open-more/key",
+          "TitleAlignment": "middle"
+        },
+        {
+          "Image": "imgs/actions/open-more/key-feedback",
           "TitleAlignment": "middle"
         }
       ]
