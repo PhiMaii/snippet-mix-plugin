@@ -77,6 +77,19 @@
           "TitleAlignment": "middle"
         }
       ]
+    },
+    {
+      "Name": "Close More",
+      "UUID": "net.phimai.snippet-mix-plugin.close-more",
+      "Icon": "imgs/actions/close-more/icon",
+      "Tooltip": "Displays a count, which increments by one on press.",
+      "PropertyInspectorPath": "ui/increment-counter.html",
+      "States": [
+        {
+          "Image": "imgs/actions/close-more/key",
+          "TitleAlignment": "middle"
+        }
+      ]
     }
   ],
   "Category": "Snippet Mix",
@@ -102,5 +115,13 @@
     "Version": "20",
     "Debug": "enabled"
   },
-  "UUID": "net.phimai.snippet-mix-plugin"
+  "UUID": "net.phimai.snippet-mix-plugin",
+  "Profiles": [
+    {
+      "Name": "SnippetMix-Default",
+      "DeviceType": 0,
+      "Readonly": false,
+      "DontAutoSwitchWhenInstalled": false
+    }
+  ]
 }
