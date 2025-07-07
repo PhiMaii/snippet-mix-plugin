@@ -67,13 +67,14 @@
       "Icon": "imgs/actions/open-more/icon",
       "Tooltip": "Displays a count, which increments by one on press.",
       "PropertyInspectorPath": "ui/increment-counter.html",
+      "DisableAutomaticStates": true,
       "States": [
         {
           "Image": "imgs/actions/open-more/key",
           "TitleAlignment": "middle"
         },
         {
-          "Image": "imgs/actions/open-more/key-feedback",
+          "Image": "imgs/actions/open-more/key",
           "TitleAlignment": "middle"
         }
       ]
