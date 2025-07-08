@@ -118,41 +118,12 @@
       ]
     },
     {
-      "Name": "Toggle Save EQ",
-      "UUID": "net.phimai.snippet-mix-plugin.edit.toggle-save-eq",
+      "Name": "Toggle Save",
+      "UUID": "net.phimai.snippet-mix-plugin.edit.toggle-save",
       "Icon": "imgs/actions/edit-snippet-menu/icon-on",
       "Tooltip": "Displays a count, which increments by one on press.",
-      "PropertyInspectorPath": "ui/increment-counter.html",
-      "States": [
-        {
-          "Image": "imgs/actions/edit-snippet-menu/key-on"
-        },
-        {
-          "Image": "imgs/actions/edit-snippet-menu/key-off"
-        }
-      ]
-    },
-    {
-      "Name": "Toggle Save Gain",
-      "UUID": "net.phimai.snippet-mix-plugin.edit.toggle-save-gain",
-      "Icon": "imgs/actions/edit-snippet-menu/icon-on",
-      "Tooltip": "Displays a count, which increments by one on press.",
-      "PropertyInspectorPath": "ui/increment-counter.html",
-      "States": [
-        {
-          "Image": "imgs/actions/edit-snippet-menu/key-on"
-        },
-        {
-          "Image": "imgs/actions/edit-snippet-menu/key-off"
-        }
-      ]
-    },
-    {
-      "Name": "Toggle Save Fader",
-      "UUID": "net.phimai.snippet-mix-plugin.edit.toggle-save-fader",
-      "Icon": "imgs/actions/edit-snippet-menu/icon-on",
-      "Tooltip": "Displays a count, which increments by one on press.",
-      "PropertyInspectorPath": "ui/increment-counter.html",
+      "PropertyInspectorPath": "ui/toggle-save.html",
+      "UserTitleEnabled": true,
       "States": [
         {
           "Image": "imgs/actions/edit-snippet-menu/key-on"

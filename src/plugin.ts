@@ -7,9 +7,7 @@ import { RowUp } from "./actions/row-up";
 import { OpenMore } from "./actions/open-more";
 import { CloseSubmenu } from "./actions/close-submenu";
 import { ClearAll } from "./actions/clear-all";
-import { ToggleSaveEQ } from "./actions/toggle-save/toggle-save-eq";
-import { ToggleSaveGain } from "./actions/toggle-save/toggle-save-gain";
-import { ToggleSaveFader } from "./actions/toggle-save/toggle-save-fader";
+import { ToggleSave } from "./actions/toggle-save/toggle-save";
 
 // We can enable "trace" logging so that all messages between the Stream Deck, and the plugin are recorded. When storing sensitive information
 streamDeck.logger.setLevel(LogLevel.INFO);
@@ -23,9 +21,7 @@ streamDeck.actions.registerAction(new OpenMore());
 streamDeck.actions.registerAction(new CloseSubmenu());
 streamDeck.actions.registerAction(new ClearAll());
 
-streamDeck.actions.registerAction(new ToggleSaveEQ());
-streamDeck.actions.registerAction(new ToggleSaveGain());
-streamDeck.actions.registerAction(new ToggleSaveFader());
+streamDeck.actions.registerAction(new ToggleSave());
 
 // Finally, connect to the Stream Deck.
 streamDeck.connect();

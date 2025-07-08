@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <title>Increment Counter Settings</title>
+    <meta charset="utf-8" />
+    <script src="https://sdpi-components.dev/releases/v4/sdpi-components.js"></script>
+</head>
+
+<body>
+    <!--
+        Learn more about property inspector components at https://sdpi-components.dev/docs/components
+    -->
+    <!-- <sdpi-item label="Title">
+        <sdpi-textfield setting="title" placeholder="Leave empty for automatic"></sdpi-textfield>
+    </sdpi-item> -->
+
+    <sdpi-item label="Functionality">
+        <sdpi-select setting="toggle_function" placeholder="Please select a functionality to toggle">
+            <option value="gain">Gain</option>
+            <option value="fader">Fader</option>
+            <option value="eq">EQ</option>
+            <option value="state">On/Off</option>
+        </sdpi-select>
+    </sdpi-item>
+
+    <sdpi-item label="Show Title">
+        <sdpi-checkbox setting="show_title"></sdpi-checkbox>
+    </sdpi-item>
+
+
+</body>
+
+</html>
