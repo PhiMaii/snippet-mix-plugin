@@ -104,6 +104,18 @@
           "TitleAlignment": "middle"
         }
       ]
+    },
+    {
+      "Name": "Adaptive Key",
+      "UUID": "net.phimai.snippet-mix-plugin.adaptive-key",
+      "Icon": "imgs/actions/adaptive-key/icon",
+      "Tooltip": "Displays a count, which increments by one on press.",
+      "PropertyInspectorPath": "ui/increment-counter.html",
+      "States": [
+        {
+          "Image": "imgs/actions/adaptive-key/key"
+        }
+      ]
     }
   ],
   "Category": "Snippet Mix",
