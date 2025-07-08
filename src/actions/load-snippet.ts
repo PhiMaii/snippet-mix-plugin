@@ -20,6 +20,8 @@ export class LoadSnippet extends SingletonAction<LoadSnippetSettings> {
   longPressTimer: ReturnType<typeof setTimeout> | null = null;
   longPressFired = false;
 
+  id: number = 0;
+
   timestamp: number = 0;
 
   constructor() {
@@ -30,10 +32,14 @@ export class LoadSnippet extends SingletonAction<LoadSnippetSettings> {
   override onWillAppear(
     ev: WillAppearEvent<LoadSnippetSettings>
   ): Promise<void> | void {
-    // ev.action.setTitle(
-    //   ev.action.coordinates?.row + " " + ev.action.coordinates?.column
-    //   ev.payload.settings.used?.toString()
-    // );
+    ev.action.setTitle(
+      (
+        (ev.action.coordinates?.column ?? 0) +
+        1 +
+        (ev.action.coordinates?.row ?? 0) * 4
+      ).toString()
+    );
+    //   ev.payload.settings.used?.toString();
   }
 
   override async onKeyUp(ev: KeyUpEvent<LoadSnippetSettings>): Promise<void> {

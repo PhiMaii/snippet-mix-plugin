@@ -124,6 +124,7 @@
       "Tooltip": "Displays a count, which increments by one on press.",
       "PropertyInspectorPath": "ui/toggle-save.html",
       "UserTitleEnabled": true,
+      "DisableAutomaticStates": true,
       "States": [
         {
           "Image": "imgs/actions/edit-snippet-menu/key-on"

@@ -3,6 +3,7 @@ import streamDeck, {
   DidReceiveSettingsEvent,
   JsonObject,
   KeyDownEvent,
+  KeyUpEvent,
   SingletonAction,
   WillAppearEvent,
 } from "@elgato/streamdeck";
@@ -45,6 +46,14 @@ export class ToggleSave extends SingletonAction<JsonObject> {
           break;
       }
     } else ev.action.setTitle("");
+
+    // ev.action.setImage("imgs/actions/edit-snippet-menu/key-off");
+  }
+
+  override async onKeyUp(ev: KeyUpEvent<JsonObject>): Promise<void> {
+    // Handle key up event if needed.
+    streamDeck.logger.info("Key up event received", ev);
+    ev.action.setState(ev.payload.state === 1 ? 0 : 1);
   }
 }
 
