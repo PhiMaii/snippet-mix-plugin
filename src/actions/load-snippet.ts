@@ -89,11 +89,13 @@ export class LoadSnippet extends SingletonAction<LoadSnippetSettings> {
 
   async longPress(ev: KeyDownEvent<LoadSnippetSettings>): Promise<void> {
     streamDeck.logger.info("LoadSnippet button long pressed");
-    streamDeck.profiles.switchToProfile(
-      ev.action.device.id,
-      "SnippetMix-Default",
-      2
-    );
+    if (ev.payload.settings.used === true) {
+      streamDeck.profiles.switchToProfile(
+        ev.action.device.id,
+        "SnippetMix-Default",
+        2
+      );
+    }
   }
 }
 
