@@ -80,14 +80,14 @@
       ]
     },
     {
-      "Name": "Close More",
-      "UUID": "net.phimai.snippet-mix-plugin.close-more",
-      "Icon": "imgs/actions/close-more/icon",
+      "Name": "Close Submenu",
+      "UUID": "net.phimai.snippet-mix-plugin.close-submenu",
+      "Icon": "imgs/actions/close-submenu/icon",
       "Tooltip": "Displays a count, which increments by one on press.",
       "PropertyInspectorPath": "ui/increment-counter.html",
       "States": [
         {
-          "Image": "imgs/actions/close-more/key",
+          "Image": "imgs/actions/close-submenu/key",
           "TitleAlignment": "middle"
         }
       ]

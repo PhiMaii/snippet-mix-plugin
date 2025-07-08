@@ -7,14 +7,14 @@ import streamDeck, {
 /**
  * An action that logs a Stream Deck key press.
  */
-@action({ UUID: "net.phimai.snippet-mix-plugin.close-more" })
-export class CloseMore extends SingletonAction {
+@action({ UUID: "net.phimai.snippet-mix-plugin.close-submenu" })
+export class CloseSubmenu extends SingletonAction {
   /**
    * Handles the user pressing a Stream Deck key (pedal, G-key, etc).
    * @param ev Information about the event.
    */
   override onKeyDown(ev: KeyDownEvent<JsonObject>): void | Promise<void> {
-    streamDeck.logger.info("CloseMore button pressed");
+    streamDeck.logger.info("CloseSubmenu button pressed");
 
     streamDeck.profiles.switchToProfile(
       ev.action.device.id,
