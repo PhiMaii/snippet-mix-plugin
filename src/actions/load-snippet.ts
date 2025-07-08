@@ -16,6 +16,10 @@ export class LoadSnippet extends SingletonAction<LoadSnippetSettings> {
    * @param ev Information about the event.
    */
 
+  LONG_PRESS_THRESHOLD = 350; // ms
+  longPressTimer: ReturnType<typeof setTimeout> | null = null;
+  longPressFired = false;
+
   timestamp: number = 0;
 
   constructor() {
@@ -26,28 +30,32 @@ export class LoadSnippet extends SingletonAction<LoadSnippetSettings> {
   override onWillAppear(
     ev: WillAppearEvent<LoadSnippetSettings>
   ): Promise<void> | void {
-    ev.action.setTitle(
-      ev.action.coordinates?.row + " " + ev.action.coordinates?.column
-      //   ev.payload.settings.used?.toString()
-    );
+    // ev.action.setTitle(
+    //   ev.action.coordinates?.row + " " + ev.action.coordinates?.column
+    //   ev.payload.settings.used?.toString()
+    // );
   }
 
   override async onKeyUp(ev: KeyUpEvent<LoadSnippetSettings>): Promise<void> {
-    let duration = Date.now() - this.timestamp;
-    streamDeck.logger.info("Duration: " + duration);
-    if (duration < 500) {
-      // Short Press
+    if (this.longPressTimer) {
+      clearTimeout(this.longPressTimer);
+      this.longPressTimer = null;
+    }
+
+    if (!this.longPressFired) {
       this.shortPress(ev);
-      // streamDeck.logger.info(ev.payload.settings.used);
-    } else {
-      this.longPress(ev);
-      // Long Press
     }
   }
 
   override onKeyDown(
     ev: KeyDownEvent<LoadSnippetSettings>
   ): void | Promise<void> {
+    this.longPressFired = false;
+
+    this.longPressTimer = setTimeout(() => {
+      this.longPressFired = true;
+      this.longPress(ev);
+    }, this.LONG_PRESS_THRESHOLD);
     // streamDeck.logger.info("LoadSnippet button pressed");
     // streamDeck.logger.info(ev.action.coordinates);
 
@@ -79,7 +87,7 @@ export class LoadSnippet extends SingletonAction<LoadSnippetSettings> {
     }
   }
 
-  async longPress(ev: KeyUpEvent<LoadSnippetSettings>): Promise<void> {
+  async longPress(ev: KeyDownEvent<LoadSnippetSettings>): Promise<void> {
     streamDeck.logger.info("LoadSnippet button long pressed");
     streamDeck.profiles.switchToProfile(
       ev.action.device.id,
