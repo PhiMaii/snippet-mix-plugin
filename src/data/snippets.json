@@ -1,0 +1,100 @@
+[
+  {
+    "snippetID": 1,
+    "snippetName": "Snippet 1",
+    "snippetIcon": "fa-solid fa-cube",
+    "snippetColor": ["Orange", "orange"],
+    "snippetChannels": ["ch1", "ch2"],
+    "snippetOutputChannels": {
+      "lr": {
+        "fader": {
+          "enabled": false,
+          "value": 0
+        },
+        "muted": {
+          "enabled": false,
+          "value": false
+        },
+        "channels": {
+          "ch1": {
+            "fader": {
+              "enabled": false,
+              "value": null
+            },
+            "muted": {
+              "enabled": false,
+              "value": null
+            },
+            "gain": {
+              "enabled": false,
+              "value": null
+            }
+          },
+          "ch2": {
+            "fader": {
+              "enabled": false,
+              "value": null
+            },
+            "muted": {
+              "enabled": false,
+              "value": null
+            },
+            "gain": {
+              "enabled": false,
+              "value": null
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "snippetID": 2,
+    "snippetName": "Snippet 2",
+    "snippetIcon": "fa-solid fa-cube",
+    "snippetColor": ["Gelb", "yellow"],
+    "snippetChannels": ["ch5", "ch12"],
+    "snippetOutputChannels": {
+      "lr": {
+        "fader": {
+          "enabled": false,
+          "value": 0
+        },
+        "muted": {
+          "enabled": false,
+          "value": false
+        },
+        "channels": {
+          "ch5": {
+            "fader": {
+              "enabled": false,
+              "value": null
+            },
+            "muted": {
+              "enabled": false,
+              "value": null
+            },
+            "gain": {
+              "enabled": false,
+              "value": null
+            }
+          },
+          "ch12": {
+            "fader": {
+              "enabled": false,
+              "value": null
+            },
+            "muted": {
+              "enabled": false,
+              "value": null
+            },
+            "gain": {
+              "enabled": false,
+              "value": null
+            }
+          }
+        }
+      }
+    }
+  }
+]
