@@ -6,6 +6,14 @@ import streamDeck, {
   SingletonAction,
   WillAppearEvent,
 } from "@elgato/streamdeck";
+
+import fs from "fs";
+import path from "path";
+import "../../utils/JSONUtils";
+import {
+  getAllSnippetsWithCoordinates,
+  getJsonData,
+} from "../../utils/JSONUtils";
 /**
  * An action that logs a Stream Deck key press.
  */
@@ -22,8 +30,6 @@ export class LoadSnippet extends SingletonAction<LoadSnippetSettings> {
 
   id: number = 0;
 
-  timestamp: number = 0;
-
   constructor() {
     super();
     streamDeck.logger.info("LoadSnippet : Constructor called");
@@ -32,6 +38,12 @@ export class LoadSnippet extends SingletonAction<LoadSnippetSettings> {
   override onWillAppear(
     ev: WillAppearEvent<LoadSnippetSettings>
   ): Promise<void> | void {
+    // @ts-ignore
+    ev.action.setState(0);
+    ev.action.setSettings({
+      used: false,
+    });
+
     ev.action.setTitle(
       (
         (ev.action.coordinates?.column ?? 0) +
@@ -39,6 +51,9 @@ export class LoadSnippet extends SingletonAction<LoadSnippetSettings> {
         (ev.action.coordinates?.row ?? 0) * 4
       ).toString()
     );
+
+    this.loadPage(ev);
+
     //   ev.payload.settings.used?.toString();
   }
 
@@ -62,34 +77,18 @@ export class LoadSnippet extends SingletonAction<LoadSnippetSettings> {
       this.longPressFired = true;
       this.longPress(ev);
     }, this.LONG_PRESS_THRESHOLD);
-    // streamDeck.logger.info("LoadSnippet button pressed");
-    // streamDeck.logger.info(ev.action.coordinates);
-
-    this.timestamp = Date.now();
   }
 
   // #####################
   async shortPress(ev: KeyUpEvent<LoadSnippetSettings>): Promise<void> {
     streamDeck.logger.info("LoadSnippet button pressed");
-    let currentState = ev.payload.state;
-    streamDeck.logger.info("Current state: " + currentState);
-
-    if (ev.payload.settings.used === true) {
-      streamDeck.logger.info("LOAD SNIPPET");
-      ev.action.showOk();
-      return;
-    }
-
-    if (currentState == 0) {
-      ev.action.setState(1);
-      await ev.action.setSettings({
+    if (ev.payload.settings.used === false) {
+      ev.action.setSettings({
         used: true,
       });
-    } else if (currentState == 1) {
-      ev.action.setState(0);
-      await ev.action.setSettings({
-        used: false,
-      });
+      ev.action.setState(1);
+    } else {
+      ev.action.showOk();
     }
   }
 
@@ -102,6 +101,32 @@ export class LoadSnippet extends SingletonAction<LoadSnippetSettings> {
         2
       );
     }
+  }
+
+  async loadPage(ev: WillAppearEvent<LoadSnippetSettings>) {
+    const PATH = path.join(process.cwd(), "../src/data/pages.json");
+    const pagesData = await getJsonData(PATH);
+
+    // streamDeck.logger.info(getAllSnippetsWithCoordinates(pagesData));
+
+    getAllSnippetsWithCoordinates(pagesData).forEach((snippet) => {
+      streamDeck.logger.info(
+        `Page: ${snippet.pageName}, Snippet ID: ${snippet.snippetId}, Row: ${snippet.row}, Col: ${snippet.col}`
+      );
+
+      if (
+        ev.action.coordinates?.column === snippet.col &&
+        ev.action.coordinates?.row === snippet.row
+      ) {
+        //@ts-ignore
+        ev.action.setState(1);
+        ev.action.setSettings({
+          used: true,
+        });
+      }
+      //@ts-ignore
+      // else ev.action.setState(0);
+    });
   }
 }
 

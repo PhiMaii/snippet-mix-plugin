@@ -1,7 +1,7 @@
 import streamDeck, { LogLevel } from "@elgato/streamdeck";
 
 import { IncrementCounter } from "./actions/increment-counter";
-import { LoadSnippet } from "./actions/load-snippet";
+import { LoadSnippet } from "./actions/load-snippet/load-snippet";
 import { RowDown } from "./actions/row-down";
 import { RowUp } from "./actions/row-up";
 import { OpenMore } from "./actions/open-more";
