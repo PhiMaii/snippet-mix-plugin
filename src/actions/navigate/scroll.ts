@@ -7,13 +7,13 @@ import streamDeck, {
 /**
  * An action that logs a Stream Deck key press.
  */
-@action({ UUID: "net.phimai.snippet-mix-plugin.row-up-down" })
-export class RowDown extends SingletonAction {
+@action({ UUID: "net.phimai.snippet-mix-plugin.navigate.scroll" })
+export class Scroll extends SingletonAction {
   /**
    * Handles the user pressing a Stream Deck key (pedal, G-key, etc).
    * @param ev Information about the event.
    */
   override onKeyDown(ev: KeyDownEvent<JsonObject>): void | Promise<void> {
-    streamDeck.logger.info("RowDown button pressed");
+    streamDeck.logger.info("Scroll button pressed");
   }
 }

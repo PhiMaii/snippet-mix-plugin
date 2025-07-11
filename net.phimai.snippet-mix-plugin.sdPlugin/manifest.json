@@ -4,21 +4,7 @@
   "Author": "PhiMai",
   "Actions": [
     {
-      "Name": "Counter",
-      "UUID": "net.phimai.snippet-mix-plugin.increment",
-      "Icon": "imgs/actions/counter/icon",
-      "Tooltip": "Displays a count, which increments by one on press.",
-      "PropertyInspectorPath": "ui/increment-counter.html",
-      "Controllers": ["Keypad"],
-      "States": [
-        {
-          "Image": "imgs/actions/counter/icon",
-          "TitleAlignment": "middle"
-        }
-      ]
-    },
-    {
-      "Name": "Load snippet",
+      "Name": "Load Snippet",
       "UUID": "net.phimai.snippet-mix-plugin.load-snippet",
       "Icon": "imgs/actions/load-snippet/icon",
       "Tooltip": "Displays a count, which increments by one on press.",
@@ -36,58 +22,45 @@
       ]
     },
     {
-      "Name": "Row Up",
-      "UUID": "net.phimai.snippet-mix-plugin.row-up",
-      "Icon": "imgs/actions/row-up/icon",
+      "Name": "Scorll Up/Down",
+      "UUID": "net.phimai.snippet-mix-plugin.navigate.scroll",
+      "Icon": "imgs/actions/navigate/scroll/icon-up-down",
       "Tooltip": "Displays a count, which increments by one on press.",
       "PropertyInspectorPath": "ui/increment-counter.html",
       "States": [
         {
-          "Image": "imgs/actions/row-up/key",
+          "Image": "imgs/actions/navigate/scroll/key-up",
           "TitleAlignment": "middle"
-        }
-      ]
-    },
-    {
-      "Name": "Row Down",
-      "UUID": "net.phimai.snippet-mix-plugin.row-down",
-      "Icon": "imgs/actions/row-down/icon",
-      "Tooltip": "Displays a count, which increments by one on press.",
-      "PropertyInspectorPath": "ui/increment-counter.html",
-      "States": [
+        },
         {
-          "Image": "imgs/actions/row-down/key",
+          "Image": "imgs/actions/navigate/scroll/key-down",
           "TitleAlignment": "middle"
         }
       ]
     },
     {
       "Name": "Open More",
-      "UUID": "net.phimai.snippet-mix-plugin.open-more",
-      "Icon": "imgs/actions/open-more/icon",
+      "UUID": "net.phimai.snippet-mix-plugin.navigate.open-more",
+      "Icon": "imgs/actions/navigate/open-more/icon",
       "Tooltip": "Displays a count, which increments by one on press.",
       "PropertyInspectorPath": "ui/increment-counter.html",
       "DisableAutomaticStates": true,
       "States": [
         {
-          "Image": "imgs/actions/open-more/key",
-          "TitleAlignment": "middle"
-        },
-        {
-          "Image": "imgs/actions/open-more/key",
+          "Image": "imgs/actions/navigate/open-more/key",
           "TitleAlignment": "middle"
         }
       ]
     },
     {
       "Name": "Close Submenu",
-      "UUID": "net.phimai.snippet-mix-plugin.close-submenu",
-      "Icon": "imgs/actions/close-submenu/icon",
+      "UUID": "net.phimai.snippet-mix-plugin.navigate.close-submenu",
+      "Icon": "imgs/actions/navigate/close-submenu/icon",
       "Tooltip": "Displays a count, which increments by one on press.",
       "PropertyInspectorPath": "ui/increment-counter.html",
       "States": [
         {
-          "Image": "imgs/actions/close-submenu/key",
+          "Image": "imgs/actions/navigate/close-submenu/key",
           "TitleAlignment": "middle"
         }
       ]
