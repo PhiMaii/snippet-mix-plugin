@@ -16,8 +16,11 @@ streamDeck.actions.registerAction(new Scroll());
 streamDeck.actions.registerAction(new OpenMore());
 streamDeck.actions.registerAction(new CloseSubmenu());
 streamDeck.actions.registerAction(new ClearAll());
-
 streamDeck.actions.registerAction(new ToggleSave());
+
+streamDeck.settings.onDidReceiveGlobalSettings((ev) => {
+  streamDeck.logger.info("Global settings received", ev);
+});
 
 // Finally, connect to the Stream Deck.
 streamDeck.connect();

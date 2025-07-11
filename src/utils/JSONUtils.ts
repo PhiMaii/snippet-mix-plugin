@@ -4,46 +4,40 @@ import { readFile } from "fs/promises";
 let cachedData: any = null;
 
 export async function getJsonData(filePath: string): Promise<any[]> {
-  // if (cachedData === null) {
-  const fileContents = await readFile(filePath, "utf-8");
-  cachedData = JSON.parse(fileContents);
-  // }
+  if (cachedData === null) {
+    const fileContents = await readFile(filePath, "utf-8");
+    cachedData = JSON.parse(fileContents);
+  }
   return cachedData;
 }
 
-//@ts-ignore
-export function getAllSnippetsWithCoordinates(pagesData: any[]): Snippet[] {
-  const results: Snippet[] = [];
-
+export function getSnippetAtCoordinates(
+  pagesData: any[],
+  row: number,
+  column: number
+): Snippet | null {
   for (const page of pagesData) {
     const pageName = page.name;
+    const rowData = page.data[row];
 
-    for (const rowKey in page.data) {
-      const row = parseInt(rowKey, 10);
-      const rowData = page.data[rowKey];
+    if (rowData) {
+      const cell = rowData[column];
 
-      for (const colKey in rowData) {
-        if (colKey === "textInserts") continue;
-
-        const col = parseInt(colKey, 10);
-        const cell = rowData[colKey];
-
-        if (cell?.type === "snippet") {
-          results.push({
-            pageName,
-            snippetId: cell.id,
-            row,
-            col,
-          });
-        }
+      if (cell?.type === "snippet") {
+        return {
+          pageName,
+          snippetId: cell.id,
+          row: row,
+          col: column,
+        };
       }
     }
   }
 
-  return results;
+  return null; // No snippet found at the given coordinates
 }
 
-type Snippet = {
+export type Snippet = {
   pageName: string;
   snippetId: number;
   row: number;
