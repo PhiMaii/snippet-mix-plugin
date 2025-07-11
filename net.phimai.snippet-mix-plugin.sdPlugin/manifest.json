@@ -26,7 +26,8 @@
       "UUID": "net.phimai.snippet-mix-plugin.navigate.scroll",
       "Icon": "imgs/actions/navigate/scroll/icon-up-down",
       "Tooltip": "Displays a count, which increments by one on press.",
-      "PropertyInspectorPath": "ui/increment-counter.html",
+      "PropertyInspectorPath": "ui/scroll.html",
+      "DisableAutomaticStates": true,
       "States": [
         {
           "Image": "imgs/actions/navigate/scroll/key-up",
