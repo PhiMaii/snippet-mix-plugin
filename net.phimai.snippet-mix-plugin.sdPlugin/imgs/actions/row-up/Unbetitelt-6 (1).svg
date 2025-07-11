@@ -1,30 +1,6 @@
-import streamDeck, {
-  action,
-  type JsonObject,
-  type KeyDownEvent,
-  SingletonAction,
-  WillAppearEvent,
-} from "@elgato/streamdeck";
-/**
- * An action that logs a Stream Deck key press.
- */
-@action({ UUID: "net.phimai.snippet-mix-plugin.row-up" })
-export class RowUp extends SingletonAction {
-  /**
-   * Handles the user pressing a Stream Deck key (pedal, G-key, etc).
-   * @param ev Information about the event.
-   */
-  override onKeyDown(ev: KeyDownEvent<JsonObject>): void | Promise<void> {
-    streamDeck.logger.info("RowUp button pressed");
-  }
-
-  override onWillAppear(ev: WillAppearEvent<JsonObject>): Promise<void> | void {
-    const svg = `<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <path d="M 233.607 220.787 C 243.314 231.576 259.078 231.576 268.784 220.787 L 393.033 82.679 C 402.74 71.889 402.74 54.367 393.033 43.577 C 383.326 32.788 367.562 32.788 357.855 43.577 L 251.156 162.177 L 144.458 43.664 C 134.751 32.874 118.987 32.874 109.28 43.664 C 99.573 54.453 99.573 71.976 109.28 82.765 L 233.529 220.873 L 233.607 220.787 Z" style="stroke-width: 1; transform-box: fill-box; transform-origin: 50% 50%; fill: rgb(255, 255, 255);" transform="matrix(-1, 0, 0, -1, 0, 0)"/>
   <path d="M 96.261 531.971 C 80.953 531.971 68.586 542.046 68.586 554.519 C 68.586 566.99 80.953 577.066 96.261 577.066 L 428.365 577.066 C 443.673 577.066 456.04 566.99 456.04 554.519 C 456.04 542.046 443.673 531.971 428.365 531.971 L 96.261 531.971 Z M 96.261 441.78 C 80.953 441.78 68.586 451.856 68.586 464.327 C 68.586 476.801 80.953 486.875 96.261 486.875 L 428.365 486.875 C 443.673 486.875 456.04 476.801 456.04 464.327 C 456.04 451.856 443.673 441.78 428.365 441.78 L 96.261 441.78 Z" style="stroke-width: 1; fill: rgb(255, 255, 255);"/>
   <text style="fill: rgb(255, 255, 255); font-family: Arial, sans-serif; font-size: 253.385788px; font-weight: 700; text-anchor: middle; white-space: pre;" transform="matrix(1, 0, 0, 1.002424, 16.860863, 105.602959)" x="230.251" y="311.009">1</text>
-</svg>`;
-    ev.action.setImage(`data:image/svg+xml,${encodeURIComponent(svg)}`);
-  }
-}
+</svg>
