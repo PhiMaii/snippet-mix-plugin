@@ -6,6 +6,7 @@ import streamDeck, {
   SingletonAction,
   WillAppearEvent,
 } from "@elgato/streamdeck";
+import { LoadSnippet } from "../load-snippet/load-snippet";
 /**
  * An action that logs a Stream Deck key press.
  */
@@ -15,6 +16,9 @@ export class Scroll extends SingletonAction {
    * Handles the user pressing a Stream Deck key (pedal, G-key, etc).
    * @param ev Information about the event.
    */
+
+  scrollAmount: number = 1; // Default scroll amount
+
   override onKeyDown(ev: KeyDownEvent<JsonObject>): void | Promise<void> {
     streamDeck.logger.info("Scroll button pressed");
     streamDeck.settings.setGlobalSettings({
@@ -38,7 +42,17 @@ export class Scroll extends SingletonAction {
       );
     }
 
-    streamDeck.actions.forEach((action) => {});
+    streamDeck.actions.forEach((action) => {
+      if (action instanceof LoadSnippet) {
+        streamDeck.logger.info("Updating action settings for scroll", action);
+        action.setSettings({
+          //@ts-ignore
+          row: action.getSettings().row + this.scrollAmount,
+          //@ts-ignore
+          // column: action.getSettings().column,
+        });
+      }
+    });
 
     // streamDeck.settings.getGlobalSettings<ScrollSettings>().then((settings) => {
     //   streamDeck.logger.info("Current scroll settings", settings);
@@ -64,6 +78,7 @@ export class Scroll extends SingletonAction {
       streamDeck.settings.setGlobalSettings({
         scroll_amount: settings.scroll_amount,
       });
+      this.scrollAmount = settings.scroll_amount;
     }
 
     // You can also update the UI or perform other actions based on the settings

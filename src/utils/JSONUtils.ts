@@ -37,6 +37,8 @@ export function getSnippetAtCoordinates(
   return null; // No snippet found at the given coordinates
 }
 
+export function getSnippetById() {}
+
 export type Snippet = {
   pageName: string;
   snippetId: number;

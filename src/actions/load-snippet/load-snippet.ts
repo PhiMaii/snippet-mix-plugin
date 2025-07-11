@@ -1,14 +1,11 @@
 import streamDeck, {
   action,
-  DidReceiveGlobalSettingsEvent,
-  type JsonObject,
   type KeyDownEvent,
   KeyUpEvent,
   SingletonAction,
   WillAppearEvent,
 } from "@elgato/streamdeck";
 
-import fs from "fs";
 import path from "path";
 import "../../utils/JSONUtils";
 import {
@@ -22,28 +19,23 @@ import { getIconSVG } from "./images";
  */
 @action({ UUID: "net.phimai.snippet-mix-plugin.load-snippet" })
 export class LoadSnippet extends SingletonAction<LoadSnippetSettings> {
-  /**
-   * Handles the user pressing a Stream Deck key (pedal, G-key, etc).
-   * @param ev Information about the event.
-   */
+  LONG_PRESS_THRESHOLD = 350; // Threshold for long press in milliseconds
+  longPressTimer: ReturnType<typeof setTimeout> | null = null; // Timer for long press
+  longPressFired = false; // Flag to check if long press was fired
 
-  LONG_PRESS_THRESHOLD = 350; // ms
-  longPressTimer: ReturnType<typeof setTimeout> | null = null;
-  longPressFired = false;
-
-  static handleGlobalSettingsChanged(ev: any) {
-    streamDeck.logger.info("Global settings received", ev);
-  }
+  // static handleGlobalSettingsChanged(ev: any) {
+  //   streamDeck.logger.info("Global settings received", ev);
+  // }
 
   override onWillAppear(
     ev: WillAppearEvent<LoadSnippetSettings>
   ): Promise<void> | void {
+    streamDeck.logger.debug("WillAppear event received", ev);
     // @ts-ignore
-
     ev.action.setState(0);
     ev.action.setSettings({
       used: false,
-      active: false,
+      loaded: false,
       row: ev.action.coordinates?.row,
       column: ev.action.coordinates?.column,
     });
@@ -68,7 +60,6 @@ export class LoadSnippet extends SingletonAction<LoadSnippetSettings> {
     ev: KeyDownEvent<LoadSnippetSettings>
   ): void | Promise<void> {
     this.longPressFired = false;
-
     this.longPressTimer = setTimeout(() => {
       this.longPressFired = true;
       this.longPress(ev);
@@ -80,27 +71,9 @@ export class LoadSnippet extends SingletonAction<LoadSnippetSettings> {
     streamDeck.logger.info("LoadSnippet button pressed", ev);
 
     if (ev.payload.settings.used === true) {
-      const svg = getIconSVG(
-        1,
-        69,
-        "Scene an",
-        "#0000ff",
-        ev.payload.settings.active ? false : true
-      );
+      const svg = getIconSVG(1, 69, "Scene an", "#0000ff", true);
       ev.action.setImage(`data:image/svg+xml,${encodeURIComponent(svg)}`);
     }
-
-    ev.action.setSettings({
-      active: !ev.payload.settings.active,
-    });
-    // if (ev.payload.settings.used === false) {
-    //   ev.action.setSettings({
-    //     used: true,
-    //   });
-    //   ev.action.setState(1);
-    // } else {
-    //   ev.action.showOk();
-    // }
   }
 
   async longPress(ev: KeyDownEvent<LoadSnippetSettings>): Promise<void> {
@@ -150,8 +123,8 @@ export class LoadSnippet extends SingletonAction<LoadSnippetSettings> {
 
 type LoadSnippetSettings = {
   used: boolean;
-  active: boolean;
-  id: number;
+  // loaded: boolean;
+  // id: number;
   row: number;
   column: number;
 };
