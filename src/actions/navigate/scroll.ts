@@ -43,14 +43,21 @@ export class Scroll extends SingletonAction {
     }
 
     streamDeck.actions.forEach((action) => {
-      if (action instanceof LoadSnippet) {
+      // streamDeck.logger.info(action);
+      if (action.manifestId === "net.phimai.snippet-mix-plugin.load-snippet") {
         streamDeck.logger.info("Updating action settings for scroll", action);
-        action.setSettings({
-          //@ts-ignore
-          row: action.getSettings().row + this.scrollAmount,
-          //@ts-ignore
-          // column: action.getSettings().column,
-        });
+        //@ts-ignore
+        // let currentRow = action.getSettings.load_snippet_from_row;
+        // streamDeck.logger.info(currentRow);
+        //@ts-ignore
+
+        // action.setSettings({
+        //@ts-ignore
+        // row: action.getSettings().row + this.scrollAmount,
+        //@ts-ignore
+        // column: action.getSettings().column,
+        // });
+        // streamDeck.logger.info("updating scrolling for: ", action);
       }
     });
 

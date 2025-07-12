@@ -2,8 +2,8 @@
   {
     "snippetID": 1,
     "snippetName": "Snippet 1",
-    "snippetIcon": "fa-solid fa-cube",
-    "snippetColor": ["Gelb", "yellow"],
+    "snippetIcon": "fa-music",
+    "snippetColor": ["Gelb", "#ffff00"],
     "snippetChannels": ["ch1", "ch2", "ch3", "ch4", "ch5"],
     "snippetOutputChannels": {
       "lr": {
@@ -95,9 +95,232 @@
   {
     "snippetID": 2,
     "snippetName": "Cube",
-    "snippetIcon": "fa-solid fa-cube",
-    "snippetColor": ["Lila", "purple"],
+    "snippetIcon": "fa-user-large",
+    "snippetColor": ["Lila", "#800080"],
     "snippetChannels": ["ch7", "ch14", "ch11"],
+    "snippetOutputChannels": {
+      "lr": {
+        "bus": {
+          "fader": {
+            "enabled": false,
+            "value": 0
+          },
+          "muted": {
+            "enabled": false,
+            "value": false
+          }
+        },
+        "channels": {
+          "ch7": {
+            "fader": {
+              "enabled": false,
+              "value": null
+            },
+            "muted": {
+              "enabled": false,
+              "value": null
+            },
+            "gain": {
+              "enabled": false,
+              "value": null
+            }
+          },
+          "ch14": {
+            "fader": {
+              "enabled": false,
+              "value": null
+            },
+            "muted": {
+              "enabled": false,
+              "value": null
+            },
+            "gain": {
+              "enabled": false,
+              "value": null
+            }
+          },
+          "ch11": {
+            "fader": {
+              "enabled": false,
+              "value": null
+            },
+            "muted": {
+              "enabled": false,
+              "value": null
+            },
+            "gain": {
+              "enabled": false,
+              "value": null
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "snippetID": 3,
+    "snippetName": "Snippet 3",
+    "snippetIcon": "fa-microphone-lines",
+    "snippetColor": ["Blau", "#0000ff"],
+    "snippetChannels": ["ch1", "ch2", "ch3", "ch4", "ch5"],
+    "snippetOutputChannels": {
+      "lr": {
+        "bus": {
+          "fader": {
+            "enabled": false,
+            "value": 0
+          },
+          "muted": {
+            "enabled": false,
+            "value": false
+          }
+        },
+        "channels": {
+          "ch1": {
+            "fader": {
+              "enabled": false,
+              "value": null
+            },
+            "muted": {
+              "enabled": false,
+              "value": null
+            },
+            "gain": {
+              "enabled": false,
+              "value": null
+            }
+          },
+          "ch2": {
+            "fader": {
+              "enabled": false,
+              "value": null
+            },
+            "muted": {
+              "enabled": false,
+              "value": null
+            },
+            "gain": {
+              "enabled": false,
+              "value": null
+            }
+          },
+          "ch3": {
+            "fader": {
+              "enabled": false,
+              "value": null
+            },
+            "muted": {
+              "enabled": false,
+              "value": null
+            },
+            "gain": {
+              "enabled": false,
+              "value": null
+            }
+          },
+          "ch4": {
+            "fader": {
+              "enabled": false,
+              "value": null
+            },
+            "muted": {
+              "enabled": false,
+              "value": null
+            },
+            "gain": {
+              "enabled": false,
+              "value": null
+            }
+          },
+          "ch5": {
+            "fader": {
+              "enabled": false,
+              "value": null
+            },
+            "muted": {
+              "enabled": false,
+              "value": null
+            },
+            "gain": {
+              "enabled": false,
+              "value": null
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "snippetID": 4,
+    "snippetName": "TEST",
+    "snippetIcon": "fa-microphone-lines",
+    "snippetColor": ["Rot", "#ff0000"],
+    "snippetChannels": ["ch7", "ch14", "ch11"],
+    "snippetOutputChannels": {
+      "lr": {
+        "bus": {
+          "fader": {
+            "enabled": false,
+            "value": 0
+          },
+          "muted": {
+            "enabled": false,
+            "value": false
+          }
+        },
+        "channels": {
+          "ch7": {
+            "fader": {
+              "enabled": false,
+              "value": null
+            },
+            "muted": {
+              "enabled": false,
+              "value": null
+            },
+            "gain": {
+              "enabled": false,
+              "value": null
+            }
+          },
+          "ch14": {
+            "fader": {
+              "enabled": false,
+              "value": null
+            },
+            "muted": {
+              "enabled": false,
+              "value": null
+            },
+            "gain": {
+              "enabled": false,
+              "value": null
+            }
+          },
+          "ch11": {
+            "fader": {
+              "enabled": false,
+              "value": null
+            },
+            "muted": {
+              "enabled": false,
+              "value": null
+            },
+            "gain": {
+              "enabled": false,
+              "value": null
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "snippetID": 5,
+    "snippetName": "SNP 1",
+    "snippetIcon": "fa-cube",
+    "snippetColor": ["Grün", "#00ff00"],
+    "snippetChannels": ["ch7", "ch14", "ch11", "ch69"],
     "snippetOutputChannels": {
       "lr": {
         "bus": {

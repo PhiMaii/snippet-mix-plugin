@@ -4,14 +4,15 @@ import streamDeck, {
   KeyUpEvent,
   SingletonAction,
   WillAppearEvent,
+  WillDisappearEvent,
 } from "@elgato/streamdeck";
 
 import path from "path";
 import "../../utils/JSONUtils";
 import {
-  Snippet,
   getJsonData,
-  getSnippetAtCoordinates,
+  getSnippetIDAtCoordinates,
+  getSnippetInfo,
 } from "../../utils/JSONUtils";
 import { getIconSVG } from "./images";
 /**
@@ -22,27 +23,56 @@ export class LoadSnippet extends SingletonAction<LoadSnippetSettings> {
   LONG_PRESS_THRESHOLD = 350; // Threshold for long press in milliseconds
   longPressTimer: ReturnType<typeof setTimeout> | null = null; // Timer for long press
   longPressFired = false; // Flag to check if long press was fired
+  PATH_PAGES = path.join(process.cwd(), "../src/data/pages.json");
+  PATH_SNIPPETS = path.join(process.cwd(), "../src/data/snippets.json");
 
-  // static handleGlobalSettingsChanged(ev: any) {
-  //   streamDeck.logger.info("Global settings received", ev);
-  // }
-
-  override onWillAppear(
+  override async onWillAppear(
     ev: WillAppearEvent<LoadSnippetSettings>
-  ): Promise<void> | void {
-    streamDeck.logger.debug("WillAppear event received", ev);
-    // @ts-ignore
-    ev.action.setState(0);
-    ev.action.setSettings({
-      used: false,
-      loaded: false,
-      row: ev.action.coordinates?.row,
-      column: ev.action.coordinates?.column,
-    });
+  ): Promise<void> {
+    // streamDeck.logger.info("WillAppear event received", ev);
+    ev.action.setImage("");
 
-    this.loadPage(ev);
+    this.updateSettingsFromJSON(ev);
 
-    //   ev.payload.settings.used?.toString();
+    streamDeck.logger.info(ev.payload.settings);
+
+    let buttonUsed: boolean = ev.payload.settings.button_used;
+    let snippetID: number = ev.payload.settings.snippet_id;
+
+    if (buttonUsed) {
+      //@ts-ignore
+      ev.action.setState(1);
+      // ev.action.setTitle(snippetID.toString());
+      ev.action.setTitle("");
+
+      let snippet: Snippet | null = getSnippetInfo(
+        this.PATH_SNIPPETS,
+        snippetID
+      );
+
+      // streamDeck.logger.info(snippet);
+
+      const svg = getIconSVG(
+        snippetID,
+        snippet?.snippet_channels.length ?? NaN,
+        snippet?.snippet_name ?? "null",
+        snippet?.snippet_color[1] ?? "NaN",
+        false,
+        snippet?.snippet_icon ?? "fa-cube"
+      );
+      ev.action.setImage(`data:image/svg+xml,${encodeURIComponent(svg)}`);
+    } else {
+      //@ts-ignore
+      ev.action.setState(0);
+      ev.action.setTitle("");
+    }
+
+    let realRow: number = ev.action.coordinates?.row ?? -1;
+    let realColumn: number = ev.action.coordinates?.column ?? -1;
+
+    let loadRow: number = ev.payload.settings.load_snippet_from_row;
+
+    // streamDeck.logger.info("Real Row: ", realRow, "Read Row: ", loadRow);
   }
 
   override async onKeyUp(ev: KeyUpEvent<LoadSnippetSettings>): Promise<void> {
@@ -67,18 +97,27 @@ export class LoadSnippet extends SingletonAction<LoadSnippetSettings> {
   }
 
   // #####################
-  async shortPress(ev: KeyUpEvent<LoadSnippetSettings>): Promise<void> {
+  shortPress(ev: KeyUpEvent<LoadSnippetSettings>): void {
     streamDeck.logger.info("LoadSnippet button pressed", ev);
 
-    if (ev.payload.settings.used === true) {
-      const svg = getIconSVG(1, 69, "Scene an", "#0000ff", true);
-      ev.action.setImage(`data:image/svg+xml,${encodeURIComponent(svg)}`);
+    if (ev.payload.settings.button_used === true) {
+      if (ev.payload.settings.snippet_active === false) {
+        const svg = getIconSVG(
+          ev.payload.settings.snippet_id,
+          11,
+          "Scene an",
+          "#0000ff",
+          true
+        );
+        ev.action.setImage(`data:image/svg+xml,${encodeURIComponent(svg)}`);
+      }
     }
   }
 
-  async longPress(ev: KeyDownEvent<LoadSnippetSettings>): Promise<void> {
-    streamDeck.logger.info("LoadSnippet button long pressed");
-    if (ev.payload.settings.used === true) {
+  longPress(ev: KeyDownEvent<LoadSnippetSettings>): void {
+    streamDeck.logger.info("LoadSnippet button long-pressed");
+
+    if (ev.payload.settings.button_used === true) {
       streamDeck.profiles.switchToProfile(
         ev.action.device.id,
         "SnippetMix-Default",
@@ -91,40 +130,66 @@ export class LoadSnippet extends SingletonAction<LoadSnippetSettings> {
     const PATH = path.join(process.cwd(), "../src/data/pages.json");
     const pagesData = await getJsonData(PATH);
 
-    let row = ev.payload.settings.row;
-    let column = ev.payload.settings.column;
+    // const svg = getIconSVG(1, 11, "Scene an", "#0000ff", false);
+    // ev.action.setImage(`data:image/svg+xml,${encodeURIComponent(svg)}`);
+  }
 
-    let snp: Snippet | null = getSnippetAtCoordinates(pagesData, row, column);
+  async updateSettingsFromJSON(ev: WillAppearEvent<LoadSnippetSettings>) {
+    // if (ev.payload.settings.load_snippet_from_row === undefined) {
+    //   ev.action.setSettings({
+    //     load_snippet_from_row: ev.action.coordinates?.row,
+    //   });
+    // }
 
-    if (snp === null) {
-      streamDeck.logger.info(
-        `No snippet found at row: ${ev.action.coordinates?.row}, column: ${ev.action.coordinates?.column}`
-      );
-      ev.action.setImage("");
-      //@ts-ignore
-      ev.action.setState(0);
+    let row: number | null = ev.payload.settings.load_snippet_from_row ?? null;
+    let column: number = ev.action.coordinates?.column ?? -1;
 
-      return;
+    if (ev.payload.settings.load_snippet_from_row === null) {
+      streamDeck.logger.info("reading out rows direkliy");
+      row = ev.action.coordinates?.row ?? -1;
     }
 
-    streamDeck.logger.info(
-      `Page: ${snp.pageName}, Snippet ID: ${snp.snippetId}, Row: ${snp.row}, Col: ${snp.col}`
-    );
+    const pagesData = await getJsonData(this.PATH_PAGES);
 
-    //@ts-ignore
-    ev.action.setState(1);
-    ev.action.setSettings({
-      used: true,
-    });
-    const svg = getIconSVG(1, 11, "Scene an", "#0000ff", false);
-    ev.action.setImage(`data:image/svg+xml,${encodeURIComponent(svg)}`);
+    const id: number | null = getSnippetIDAtCoordinates(pagesData, row, column);
+
+    streamDeck.logger.info("Snipped with id: ", id);
+
+    if (id === null) {
+      ev.action.setSettings({
+        button_used: false,
+        load_snippet_from_column: column,
+        load_snippet_from_row: row,
+        snippet_active: false,
+      });
+    } else {
+      ev.action.setSettings({
+        button_used: true,
+        snippet_id: id,
+        load_snippet_from_column: column,
+        load_snippet_from_row: row,
+        snippet_active: false,
+      });
+    }
+  }
+
+  updateReadFromRow(newRow: number) {
+    streamDeck.logger.info("new Row:", newRow);
   }
 }
 
 type LoadSnippetSettings = {
-  used: boolean;
-  // loaded: boolean;
-  // id: number;
-  row: number;
-  column: number;
+  button_used: boolean;
+  snippet_active: boolean;
+  snippet_id: number;
+  load_snippet_from_row: number;
+  load_snippet_from_column: number;
+};
+
+export type Snippet = {
+  snippet_id: number;
+  snippet_name: string;
+  snippet_icon: string;
+  snippet_color: [string, string];
+  snippet_channels: string[];
 };
