@@ -48,8 +48,10 @@
       "DisableAutomaticStates": true,
       "States": [
         {
-          "Image": "imgs/actions/navigate/open-more/key",
-          "TitleAlignment": "middle"
+          "Image": "imgs/actions/navigate/open-more/key-connection"
+        },
+        {
+          "Image": "imgs/actions/navigate/open-more/key-no-connection"
         }
       ]
     },
