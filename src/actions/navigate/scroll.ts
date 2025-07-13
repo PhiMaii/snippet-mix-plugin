@@ -21,19 +21,20 @@ export class Scroll extends SingletonAction {
 
   override onKeyDown(ev: KeyDownEvent<JsonObject>): void | Promise<void> {
     streamDeck.logger.info("Scroll button pressed");
-    streamDeck.settings.setGlobalSettings({
-      messageReceived: true,
-    });
+    const currentScrollAmount =
+      streamDeck.settings.getGlobalSettings<ScrollSettings>();
+
+    streamDeck.logger.info(currentScrollAmount);
 
     if (ev.payload.settings.scroll_direction === "up") {
       streamDeck.logger.info("Requesting scroll up");
       streamDeck.settings.setGlobalSettings({
-        request_scroll_up: true,
+        request_scroll: true,
       });
     } else if (ev.payload.settings.scroll_direction === "down") {
       streamDeck.logger.info("Requesting scroll down");
       streamDeck.settings.setGlobalSettings({
-        request_scroll_down: true,
+        request_scroll: true,
       });
     } else {
       streamDeck.logger.warn(
@@ -45,12 +46,11 @@ export class Scroll extends SingletonAction {
     streamDeck.actions.forEach((action) => {
       // streamDeck.logger.info(action);
       if (action.manifestId === "net.phimai.snippet-mix-plugin.load-snippet") {
-        streamDeck.logger.info("Updating action settings for scroll", action);
+        // streamDeck.logger.info("Updating action settings for scroll", action);
         //@ts-ignore
         // let currentRow = action.getSettings.load_snippet_from_row;
         // streamDeck.logger.info(currentRow);
         //@ts-ignore
-
         // action.setSettings({
         //@ts-ignore
         // row: action.getSettings().row + this.scrollAmount,
@@ -66,9 +66,10 @@ export class Scroll extends SingletonAction {
     // });
   }
 
-  override onWillAppear(
-    ev: WillAppearEvent<JsonObject>
-  ): Promise<void> | void {}
+  override onWillAppear(ev: WillAppearEvent<JsonObject>): Promise<void> | void {
+    // const scroll_offset = streamDeck.settings.getGlobalSettings();
+    // streamDeck.logger.info(scroll_offset);
+  }
 
   override onDidReceiveSettings(
     ev: DidReceiveSettingsEvent<ScrollSettings>
@@ -111,4 +112,9 @@ export class Scroll extends SingletonAction {
 type ScrollSettings = {
   scroll_direction: "up" | "down";
   scroll_amount: number;
+};
+
+type globalSettings = {
+  request_scroll: boolean;
+  current_scroll_amount: number;
 };

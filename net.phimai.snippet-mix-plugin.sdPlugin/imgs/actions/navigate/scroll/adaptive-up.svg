@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <path d="M 341.202 187.277 C 349.571 178.908 363.162 178.908 371.53 187.277 L 478.649 294.395 C 487.018 302.764 487.018 316.355 478.649 324.724 C 470.281 333.092 456.69 333.092 448.321 324.724 L 356.333 232.735 L 264.345 324.657 C 255.976 333.025 242.385 333.025 234.017 324.657 C 225.648 316.288 225.648 302.697 234.017 294.329 L 341.135 187.21 L 341.202 187.277 Z" style="stroke-width: 1; fill: rgb(255, 255, 255);"/>
+  <rect width="200" height="512" style="fill: rgb(216, 216, 216);"/>
+  <text style="font-family: Arial, sans-serif; font-size: 130px; font-weight: 700; white-space: pre; stroke-width: 1;" x="30.007" y="300.686">69</text>
+</svg>

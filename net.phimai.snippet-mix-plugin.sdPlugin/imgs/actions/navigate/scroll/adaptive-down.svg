@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512px" height="512px" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <bx:export>
+      <bx:file format="svg" path="Unbetitelt.svg"/>
+    </bx:export>
+  </defs>
+  <rect width="200" height="512" style="fill: rgb(216, 216, 216);" transform="matrix(1, 0, 0, 1, 5.684341886080802e-14, 0)"/>
+  <text style="font-family: Arial, sans-serif; font-size: 130px; font-weight: 700; white-space: pre; stroke-width: 1;" x="30.007" y="300.686" transform="matrix(1, 0, 0, 1, 5.684341886080802e-14, 0)">69</text>
+  <path d="M 341.162 324.724 C 349.531 333.092 363.122 333.092 371.49 324.724 L 478.609 217.605 C 486.978 209.236 486.978 195.645 478.609 187.277 C 470.241 178.908 456.65 178.908 448.281 187.277 L 356.293 279.265 L 264.305 187.343 C 255.936 178.975 242.345 178.975 233.977 187.343 C 225.608 195.712 225.608 209.303 233.977 217.672 L 341.095 324.79 L 341.162 324.724 Z" style="stroke-width: 1; fill: rgb(255, 255, 255);"/>
+</svg>

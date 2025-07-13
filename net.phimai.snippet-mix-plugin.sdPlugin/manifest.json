@@ -30,11 +30,11 @@
       "DisableAutomaticStates": true,
       "States": [
         {
-          "Image": "imgs/actions/navigate/scroll/key-up",
+          "Image": "imgs/actions/navigate/scroll/adaptive-up",
           "TitleAlignment": "middle"
         },
         {
-          "Image": "imgs/actions/navigate/scroll/key-down",
+          "Image": "imgs/actions/navigate/scroll/adaptive-down",
           "TitleAlignment": "middle"
         }
       ]
@@ -48,10 +48,7 @@
       "DisableAutomaticStates": true,
       "States": [
         {
-          "Image": "imgs/actions/navigate/open-more/key-connection"
-        },
-        {
-          "Image": "imgs/actions/navigate/open-more/key-no-connection"
+          "Image": "imgs/actions/navigate/open-more/key-adaptive"
         }
       ]
     },

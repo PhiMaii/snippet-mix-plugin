@@ -144,10 +144,10 @@ export class LoadSnippet extends SingletonAction<LoadSnippetSettings> {
     let row: number | null = ev.payload.settings.load_snippet_from_row ?? null;
     let column: number = ev.action.coordinates?.column ?? -1;
 
-    if (ev.payload.settings.load_snippet_from_row === null) {
-      streamDeck.logger.info("reading out rows direkliy");
-      row = ev.action.coordinates?.row ?? -1;
-    }
+    // if (ev.payload.settings.load_snippet_from_row === null) {
+    //   streamDeck.logger.info("reading out rows direkliy");
+    //   row = ev.action.coordinates?.row ?? -1;
+    // }
 
     const pagesData = await getJsonData(this.PATH_PAGES);
 
