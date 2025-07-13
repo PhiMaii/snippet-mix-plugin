@@ -24,3 +24,9 @@ streamDeck.connect();
 // streamDeck.settings.onDidReceiveGlobalSettings((ev) => {
 //   streamDeck.logger.info("Global settings received", ev);
 // });
+
+streamDeck.settings.setGlobalSettings({
+  test: 1,
+});
+
+streamDeck.logger.info(streamDeck.settings.getGlobalSettings());

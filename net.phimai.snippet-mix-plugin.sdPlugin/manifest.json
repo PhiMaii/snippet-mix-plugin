@@ -8,7 +8,6 @@
       "UUID": "net.phimai.snippet-mix-plugin.load-snippet",
       "Icon": "imgs/actions/load-snippet/icon",
       "Tooltip": "Displays a count, which increments by one on press.",
-      "PropertyInspectorPath": "ui/increment-counter.html",
       "DisableAutomaticStates": true,
       "States": [
         {
@@ -44,7 +43,6 @@
       "UUID": "net.phimai.snippet-mix-plugin.navigate.open-more",
       "Icon": "imgs/actions/navigate/open-more/icon",
       "Tooltip": "Displays a count, which increments by one on press.",
-      "PropertyInspectorPath": "ui/increment-counter.html",
       "DisableAutomaticStates": true,
       "States": [
         {
@@ -57,7 +55,6 @@
       "UUID": "net.phimai.snippet-mix-plugin.navigate.close-submenu",
       "Icon": "imgs/actions/navigate/close-submenu/icon",
       "Tooltip": "Displays a count, which increments by one on press.",
-      "PropertyInspectorPath": "ui/increment-counter.html",
       "States": [
         {
           "Image": "imgs/actions/navigate/close-submenu/key",
@@ -70,7 +67,6 @@
       "UUID": "net.phimai.snippet-mix-plugin.clear-all",
       "Icon": "imgs/actions/clear-all/icon",
       "Tooltip": "Displays a count, which increments by one on press.",
-      "PropertyInspectorPath": "ui/increment-counter.html",
       "States": [
         {
           "Image": "imgs/actions/clear-all/key",
@@ -84,6 +80,7 @@
       "Icon": "imgs/actions/adaptive-key/icon",
       "Tooltip": "Displays a count, which increments by one on press.",
       "PropertyInspectorPath": "ui/increment-counter.html",
+      "VisibleInActionsList": false,
       "States": [
         {
           "Image": "imgs/actions/adaptive-key/key"
