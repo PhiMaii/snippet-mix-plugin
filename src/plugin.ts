@@ -1,4 +1,4 @@
-import streamDeck, { LogLevel } from "@elgato/streamdeck";
+import streamDeck, { JsonObject, LogLevel } from "@elgato/streamdeck";
 
 import { LoadSnippet } from "./actions/load-snippet/load-snippet";
 import { OpenMore } from "./actions/navigate/open-more";
@@ -25,8 +25,8 @@ streamDeck.connect();
 //   streamDeck.logger.info("Global settings received", ev);
 // });
 
-streamDeck.settings.setGlobalSettings({
-  test: 1,
-});
-
-streamDeck.logger.info(streamDeck.settings.getGlobalSettings());
+await streamDeck.settings
+  .getGlobalSettings<JsonObject>()
+  .then(async (settings) => {
+    streamDeck.logger.info(settings);
+  });

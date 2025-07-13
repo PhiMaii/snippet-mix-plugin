@@ -4,7 +4,6 @@ import streamDeck, {
   KeyUpEvent,
   SingletonAction,
   WillAppearEvent,
-  WillDisappearEvent,
 } from "@elgato/streamdeck";
 
 import path from "path";
@@ -100,14 +99,22 @@ export class LoadSnippet extends SingletonAction<LoadSnippetSettings> {
   shortPress(ev: KeyUpEvent<LoadSnippetSettings>): void {
     streamDeck.logger.info("LoadSnippet button pressed", ev);
 
+    let snippetID = ev.payload.settings.snippet_id;
+
     if (ev.payload.settings.button_used === true) {
       if (ev.payload.settings.snippet_active === false) {
+        let snippet: Snippet | null = getSnippetInfo(
+          this.PATH_SNIPPETS,
+          snippetID
+        );
+
         const svg = getIconSVG(
-          ev.payload.settings.snippet_id,
-          11,
-          "Scene an",
-          "#0000ff",
-          true
+          snippetID,
+          snippet?.snippet_channels.length ?? NaN,
+          snippet?.snippet_name ?? "null",
+          snippet?.snippet_color[1] ?? "NaN",
+          true,
+          snippet?.snippet_icon ?? "fa-cube"
         );
         ev.action.setImage(`data:image/svg+xml,${encodeURIComponent(svg)}`);
       }

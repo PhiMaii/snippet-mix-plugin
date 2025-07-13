@@ -21,10 +21,10 @@ export class Scroll extends SingletonAction {
 
   override onKeyDown(ev: KeyDownEvent<JsonObject>): void | Promise<void> {
     streamDeck.logger.info("Scroll button pressed");
-    const currentScrollAmount =
-      streamDeck.settings.getGlobalSettings<ScrollSettings>();
+    // const currentScrollAmount =
+    //   streamDeck.settings.getGlobalSettings<ScrollSettings>();
 
-    streamDeck.logger.info(currentScrollAmount);
+    // streamDeck.logger.info(currentScrollAmount);
 
     if (ev.payload.settings.scroll_direction === "up") {
       streamDeck.logger.info("Requesting scroll up");
