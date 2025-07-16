@@ -154,9 +154,6 @@
                 {
                     "Image": "imgs/actions/settings/load-page-or-show/page-icon",
                     "TitleAlignment": "middle"
-                },
-                {
-                    "Image": "imgs/actions/settings/load-page-or-show/show-icon"
                 }
             ]
         },
