@@ -68,3 +68,12 @@ export function getSnippetInfo(filePath: string, id: number): Snippet | null {
 		return null;
 	}
 }
+
+export function isJson(str: string) {
+	try {
+		JSON.parse(str);
+	} catch (e) {
+		return false;
+	}
+	return true;
+}

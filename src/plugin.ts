@@ -9,15 +9,23 @@ import { RenderScroll, Scroll } from "./actions/navigate/scroll";
 import { Start } from "./actions/start";
 import { Stop } from "./actions/stop";
 import { ToggleSave } from "./actions/toggle-save";
-import { getJsonDataSync } from "./utils/JSONUtils";
 
 const PATH_PAGES = "data/pages.json";
-export const PAGES_DATA = getJsonDataSync(PATH_PAGES);
-
+//export const PAGES_DATA = getJsonDataSync(PATH_PAGES);
+export let PAGES_DATA: any[] = [];
+export let SNIPPET_DATA: any[] = [];
 export let SCROLL_OFFSET = 0;
 
 export function SET_SCROLL_OFFSET(scroll_offset: number) {
 	SCROLL_OFFSET = scroll_offset;
+}
+
+export function SET_PAGES_DATA(NEW_PAGES_DATA: any[]) {
+	PAGES_DATA = NEW_PAGES_DATA;
+}
+
+export function SET_SNIPPET_DATA(NEW_SNIPPET_DATA: any[]) {
+	SNIPPET_DATA = NEW_SNIPPET_DATA;
 }
 
 export function SCROLL_RERENDER_ACTIONS() {
@@ -28,6 +36,14 @@ export function SCROLL_RERENDER_ACTIONS() {
 			RenderScroll(action);
 		} else if (action.manifestId === "net.phimai.snippet-mix-plugin.navigate.open-more") {
 			RenderMore(action);
+		}
+	}
+}
+
+export function RERENDER_SNIPPET_ACTIONS() {
+	for (const action of streamDeck.actions) {
+		if (action.manifestId === "net.phimai.snippet-mix-plugin.load-snippet") {
+			RenderSnippet(action);
 		}
 	}
 }
