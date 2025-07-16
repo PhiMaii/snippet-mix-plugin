@@ -9,12 +9,15 @@ import { RenderScroll, Scroll } from "./actions/navigate/scroll";
 import { Start } from "./actions/start";
 import { Stop } from "./actions/stop";
 import { ToggleSave } from "./actions/toggle-save";
+import { WebSocketManager } from "./websocket/WebSocketManager";
 
 const PATH_PAGES = "data/pages.json";
 //export const PAGES_DATA = getJsonDataSync(PATH_PAGES);
 export let PAGES_DATA: any[] = [];
 export let SNIPPET_DATA: any[] = [];
 export let SCROLL_OFFSET = 0;
+
+export const WEBSOCKET_MANAGER = new WebSocketManager();
 
 export function SET_SCROLL_OFFSET(scroll_offset: number) {
 	SCROLL_OFFSET = scroll_offset;

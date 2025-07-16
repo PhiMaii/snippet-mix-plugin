@@ -1,9 +1,9 @@
 import streamDeck from "@elgato/streamdeck";
 import * as fs from "fs";
 import { readFile } from "fs/promises";
-import * as path from "path";
 
 import { Snippet } from "../actions/load-snippet/load-snippet";
+import { SNIPPET_DATA } from "../plugin";
 
 let cachedData: any = null;
 
@@ -43,30 +43,21 @@ export function getSnippetIDAtCoordinates(pagesData: any[], row: number | null, 
 
 export function getSnippetInfo(filePath: string, id: number): Snippet | null {
 	streamDeck.logger.info("Getting snippet with id: ", id);
-	try {
-		const fullPath = path.resolve(filePath);
-		streamDeck.logger.info(fullPath);
-		const rawData = fs.readFileSync(fullPath, "utf-8");
-		const snippets = JSON.parse(rawData) as any[];
 
-		const snippet = snippets.find((s) => s.snippetID === id);
-		if (!snippet) {
-			return null;
-		}
-
-		const result: Snippet = {
-			snippet_id: snippet.snippetID,
-			snippet_name: snippet.snippetName,
-			snippet_icon: snippet.snippetIcon,
-			snippet_color: snippet.snippetColor,
-			snippet_channels: snippet.snippetChannels,
-		};
-
-		return result;
-	} catch (error) {
-		streamDeck.logger.error("Failed to read or parse file:", error);
+	const snippet = SNIPPET_DATA.find((s) => s.snippetID === id);
+	if (!snippet) {
 		return null;
 	}
+
+	const result: Snippet = {
+		snippet_id: snippet.snippetID,
+		snippet_name: snippet.snippetName,
+		snippet_icon: snippet.snippetIcon,
+		snippet_color: snippet.snippetColor,
+		snippet_channels: snippet.snippetChannels,
+	};
+
+	return result;
 }
 
 export function isJson(str: string) {
