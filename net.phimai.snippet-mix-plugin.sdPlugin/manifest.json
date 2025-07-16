@@ -1,0 +1,134 @@
+{
+    "Name": "snippet-mix-plugin",
+    "Version": "0.1.0.0",
+    "Author": "PhiMai",
+    "Actions": [
+        {
+            "Name": "Load Snippet",
+            "UUID": "net.phimai.snippet-mix-plugin.load-snippet",
+            "Icon": "imgs/actions/load-snippet/icon",
+            "Tooltip": "Shows a fully responsive icon that loads a snippet when pressed",
+            "DisableAutomaticStates": true,
+            "States": [
+                {
+                    "Image": "imgs/actions/load-snippet/key-unused"
+                },
+                {
+                    "Image": "imgs/actions/load-snippet/key-used"
+                }
+            ]
+        },
+        {
+            "Name": "Scorll Up/Down",
+            "UUID": "net.phimai.snippet-mix-plugin.navigate.scroll",
+            "Icon": "imgs/actions/navigate/scroll/icon-up-down",
+            "Tooltip": "Allows the user to scroll up/down the snippet list",
+            "PropertyInspectorPath": "ui/scroll.html",
+            "DisableAutomaticStates": true,
+            "States": [
+                {
+                    "Image": "imgs/actions/navigate/scroll/adaptive-up"
+                },
+                {
+                    "Image": "imgs/actions/navigate/scroll/adaptive-down"
+                }
+            ]
+        },
+        {
+            "Name": "Open More",
+            "UUID": "net.phimai.snippet-mix-plugin.navigate.open-more",
+            "Icon": "imgs/actions/navigate/open-more/icon",
+            "Tooltip": "Opens a submenu with more functionality",
+            "DisableAutomaticStates": true,
+            "States": [
+                {
+                    "Image": "imgs/actions/navigate/open-more/key-adaptive"
+                }
+            ]
+        },
+        {
+            "Name": "Close Submenu",
+            "UUID": "net.phimai.snippet-mix-plugin.navigate.close-submenu",
+            "Icon": "imgs/actions/navigate/close-submenu/icon",
+            "Tooltip": "Closes the current submenu and returns to the first page of the snippet mix profile",
+            "States": [
+                {
+                    "Image": "imgs/actions/navigate/close-submenu/key"
+                }
+            ]
+        },
+        {
+            "Name": "Clear All",
+            "UUID": "net.phimai.snippet-mix-plugin.clear-all",
+            "Icon": "imgs/actions/clear-all/icon",
+            "Tooltip": "Deletes all snippets after confirmation by holding the button for 3 seconds",
+            "States": [
+                {
+                    "Image": "imgs/actions/clear-all/key"
+                }
+            ]
+        },
+        {
+            "Name": "Adaptive Key",
+            "UUID": "net.phimai.snippet-mix-plugin.adaptive-key",
+            "Icon": "imgs/actions/adaptive-key/icon",
+            "Tooltip": "A key used for debugging purposes",
+            "PropertyInspectorPath": "ui/increment-counter.html",
+            "VisibleInActionsList": false,
+            "States": [
+                {
+                    "Image": "imgs/actions/adaptive-key/key"
+                }
+            ]
+        },
+        {
+            "Name": "Toggle Save",
+            "UUID": "net.phimai.snippet-mix-plugin.edit.toggle-save",
+            "Icon": "imgs/actions/edit-snippet-menu/icon-on",
+            "Tooltip": "Toggles which settings are overwritten when loading a snippet",
+            "PropertyInspectorPath": "ui/toggle-save.html",
+            "UserTitleEnabled": false,
+            "DisableAutomaticStates": true,
+            "States": [
+                {
+                    "Image": "imgs/actions/edit-snippet-menu/key-on"
+                },
+                {
+                    "Image": "imgs/actions/edit-snippet-menu/key-off"
+                }
+            ]
+        }
+    ],
+    "Category": "Snippet Mix",
+    "CategoryIcon": "imgs/plugin/category-icon",
+    "CodePath": "bin/plugin.js",
+    "Description": "A plugin to interface with snippet mix to remote control a soundcraft si expression",
+    "Icon": "imgs/plugin/marketplace",
+    "SDKVersion": 2,
+    "Software": {
+        "MinimumVersion": "6.5"
+    },
+    "OS": [
+        {
+            "Platform": "mac",
+            "MinimumVersion": "12"
+        },
+        {
+            "Platform": "windows",
+            "MinimumVersion": "10"
+        }
+    ],
+    "Nodejs": {
+        "Version": "20",
+        "Debug": "enabled"
+    },
+    "UUID": "net.phimai.snippet-mix-plugin",
+    "Profiles": [
+        {
+            "Name": "SnippetMix-Default",
+            "DeviceType": 0,
+            "Readonly": false,
+            "DontAutoSwitchWhenInstalled": false
+        }
+    ]
+}
