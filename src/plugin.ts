@@ -6,7 +6,7 @@ import { LoadSnippet, RenderSnippet } from "./actions/load-snippet/load-snippet"
 import { CloseSubmenu } from "./actions/navigate/close-submenu";
 import { OpenMore, RenderMore } from "./actions/navigate/open-more";
 import { RenderScroll, Scroll } from "./actions/navigate/scroll";
-import { Start } from "./actions/start";
+import { Start, StartSettings } from "./actions/start";
 import { Stop } from "./actions/stop";
 import { ToggleSave } from "./actions/toggle-save";
 import { WebSocketManager } from "./websocket/WebSocketManager";
@@ -64,6 +64,23 @@ streamDeck.actions.registerAction(new ToggleSave());
 streamDeck.actions.registerAction(new Start());
 streamDeck.actions.registerAction(new Stop());
 streamDeck.actions.registerAction(new Load());
+
+// TODO: FIX: Zerstört evtl mehrere START btns
+streamDeck.actions.onWillAppear(async (ev) => {
+	if (WEBSOCKET_MANAGER.ws === null) {
+		streamDeck.logger.info("GET GLOBAL SETTINGS");
+		const globalSettings = await streamDeck.settings.getGlobalSettings<StartSettings>();
+		const host = globalSettings?.ws?.host;
+		const port = globalSettings?.ws?.port;
+
+		streamDeck.logger.info("GLOBAL SETTINGS: ", globalSettings);
+
+		if (host && port) {
+			streamDeck.logger.info("CONNECT WS AUTOMATICLY");
+			WEBSOCKET_MANAGER.CONNECT_WEBSOCKET(host, port, "Show 1");
+		}
+	}
+});
 
 // Finally, connect to the Stream Deck.
 streamDeck.connect();

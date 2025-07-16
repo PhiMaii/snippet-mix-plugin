@@ -34,7 +34,7 @@ export class Start extends SingletonAction<JsonObject> {
 	}
 }
 
-type StartSettings = {
+export type StartSettings = {
 	ws: {
 		host: string;
 		port: number;

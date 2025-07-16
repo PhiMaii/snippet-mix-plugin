@@ -81,14 +81,14 @@ export class Scroll extends SingletonAction {
 		let settings: ScrollSettings = ev.payload.settings;
 		streamDeck.logger.info("Scroll settings received", settings);
 
-		if (settings.scroll_amount != undefined) {
+		/* if (settings.scroll_amount != undefined) {
 			streamDeck.logger.info("Global Scroll amount set to", settings.scroll_amount);
 			//@ts-ignore
 			streamDeck.settings.setGlobalSettings({
 				scroll_amount: settings.scroll_amount,
 			});
 			this.scrollAmount = settings.scroll_amount;
-		}
+		} */
 
 		// You can also update the UI or perform other actions based on the settings
 		if (ev.payload.settings.scroll_direction === "up") {

@@ -5,7 +5,7 @@ import { RERENDER_SNIPPET_ACTIONS, SET_PAGES_DATA, SET_SNIPPET_DATA } from "../p
 import { isJson } from "../utils/JSONUtils";
 
 export class WebSocketManager {
-	private ws: null | WebSocket = null;
+	public ws: null | WebSocket = null;
 	private isConnected = false;
 
 	CONNECT_WEBSOCKET(host: string, port: number, showName: string) {

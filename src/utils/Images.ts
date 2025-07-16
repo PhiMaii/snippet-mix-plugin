@@ -41,7 +41,7 @@ export function getIconSVG(
         ${svg(icon ?? "", color)}
         </g>
 
-        <text style="fill: rgb(255, 255, 255); font-family: Arial, sans-serif; font-size: 90px; font-weight: 700; text-anchor: middle; white-space: pre;" x="256.275" y="376.951">${name || "Unnamed"}</text>
+        <text style="fill: rgb(255, 255, 255); font-family: Arial, sans-serif; font-size: 90px; font-weight: 700; text-anchor: middle; white-space: pre;" x="256.275" y="376.951">${name || ""}</text>
         <rect y="422" width="512" height="90" style="stroke: rgb(0, 0, 0); fill:${color || "#ffffff"};"/>
         <text style="fill: ${textColor}; font-family: Arial, sans-serif; font-size: 65px; font-weight: 700; text-anchor: end; white-space: pre;" x="462.898" y="487.796">${channels || 0} CH</text>
         <text style="fill: ${textColor}; font-family: Arial, sans-serif; font-size: 65px; font-weight: 700; white-space: pre;" x="51.392" y="488.675">ID ${id || "NaN"}</text>
