@@ -6,8 +6,7 @@ import streamDeck, {
 	WillAppearEvent,
 } from "@elgato/streamdeck";
 
-import { LOAD_SNIPPET_ACTIONS, SCROLL_OFFSET, SET_SCROLL_OFFSET } from "../../plugin";
-import { RenderSnippet } from "../load-snippet/load-snippet";
+import { SCROLL_OFFSET, SCROLL_RERENDER_ACTIONS, SET_SCROLL_OFFSET } from "../../plugin";
 
 /**
  * An action that logs a Stream Deck key press.
@@ -61,18 +60,10 @@ export class Scroll extends SingletonAction {
 			}
 
 			SET_SCROLL_OFFSET(SCROLL_OFFSET - 1);
-			for (const action of LOAD_SNIPPET_ACTIONS) {
-				RenderSnippet(action);
-			}
-
-			ev.action.showOk();
+			SCROLL_RERENDER_ACTIONS();
 		} else if (ev.payload.settings.scroll_direction === "down") {
 			SET_SCROLL_OFFSET(SCROLL_OFFSET + 1);
-			for (const action of LOAD_SNIPPET_ACTIONS) {
-				RenderSnippet(action);
-			}
-
-			await ev.action.showOk();
+			SCROLL_RERENDER_ACTIONS();
 		} else {
 			streamDeck.logger.warn("Unknown scroll direction", ev.payload.settings.scroll_direction);
 		}

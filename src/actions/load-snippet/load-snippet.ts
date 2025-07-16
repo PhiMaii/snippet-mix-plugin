@@ -4,11 +4,10 @@ import streamDeck, {
 	KeyUpEvent,
 	SingletonAction,
 	WillAppearEvent,
-	WillDisappearEvent,
 } from "@elgato/streamdeck";
 import path from "path";
 
-import { PAGES_DATA, PUSH_LOAD_SNIPPET_ACTION, REMOVE_LOAD_SNIPPET_ACTION, SCROLL_OFFSET } from "../../plugin";
+import { PAGES_DATA, SCROLL_OFFSET } from "../../plugin";
 import { getIconSVG } from "../../utils/Images";
 import "../../utils/JSONUtils";
 import { getJsonData, getJsonDataSync, getSnippetIDAtCoordinates, getSnippetInfo } from "../../utils/JSONUtils";
@@ -39,13 +38,7 @@ export class LoadSnippet extends SingletonAction<LoadSnippetSettings> {
 	}
 
 	override async onWillAppear(ev: WillAppearEvent<LoadSnippetSettings>): Promise<void> {
-		PUSH_LOAD_SNIPPET_ACTION(ev.action);
-
 		RenderSnippet(ev.action);
-	}
-
-	override async onWillDisappear(ev: WillDisappearEvent<LoadSnippetSettings>) {
-		REMOVE_LOAD_SNIPPET_ACTION(ev.action);
 	}
 
 	override async onKeyUp(ev: KeyUpEvent<LoadSnippetSettings>): Promise<void> {

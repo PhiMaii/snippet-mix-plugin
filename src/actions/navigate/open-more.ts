@@ -24,11 +24,11 @@ export class OpenMore extends SingletonAction {
 	}
 
 	override onWillAppear(ev: WillAppearEvent<JsonObject>): Promise<void> | void {
-		renderMore(ev.action);
+		RenderMore(ev.action);
 	}
 }
 
-export async function renderMore(action: any) {
+export async function RenderMore(action: any) {
 	let svg: string = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   		<path d="M 237.004 242.439 C 237.004 232.971 244.604 225.322 254.015 225.322 L 458.138 225.322 C 467.547 225.322 475.148 232.971 475.148 242.439 C 475.148 251.909 467.547 259.557 458.138 259.557 L 254.015 259.557 C 244.604 259.557 237.004 251.909 237.004 242.439 Z M 237.004 328.031 C 237.004 318.563 244.604 310.914 254.015 310.914 L 458.138 310.914 C 467.547 310.914 475.148 318.563 475.148 328.031 C 475.148 337.501 467.547 345.15 458.138 345.15 L 254.015 345.15 C 244.604 345.15 237.004 337.501 237.004 328.031 Z M 475.148 413.625 C 475.148 423.093 467.547 430.743 458.138 430.743 L 254.015 430.743 C 244.604 430.743 237.004 423.093 237.004 413.625 C 237.004 404.156 244.604 396.506 254.015 396.506 L 458.138 396.506 C 467.547 396.506 475.148 404.156 475.148 413.625 Z" style="stroke-width: 1; fill: rgb(255, 255, 255);"/>
   		<rect width="512" height="150" style="fill: rgb(216, 216, 216);"/>

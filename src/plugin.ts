@@ -3,7 +3,7 @@ import streamDeck, { LogLevel } from "@elgato/streamdeck";
 import { ClearAll } from "./actions/clear-all";
 import { LoadSnippet, RenderSnippet } from "./actions/load-snippet/load-snippet";
 import { CloseSubmenu } from "./actions/navigate/close-submenu";
-import { OpenMore } from "./actions/navigate/open-more";
+import { OpenMore, RenderMore } from "./actions/navigate/open-more";
 import { RenderScroll, Scroll } from "./actions/navigate/scroll";
 import { ToggleSave } from "./actions/toggle-save";
 import { getJsonDataSync } from "./utils/JSONUtils";
@@ -41,30 +41,6 @@ export function SET_SCROLL_OFFSET(scroll_offset: number) {
 	SCROLL_OFFSET = scroll_offset;
 }
 
-export let LOAD_SNIPPET_ACTIONS: any[] = [];
-
-export function PUSH_LOAD_SNIPPET_ACTION(value: any) {
-	LOAD_SNIPPET_ACTIONS.push(value);
-	LOAD_SNIPPET_ACTIONS.sort((actionA, actionB) => {
-		const { row: rowA, column: columnA } = actionA.coordinates;
-		const sortID_A = rowA * 4 + columnA;
-		const { row: rowB, column: columnB } = actionB.coordinates;
-		const sortID_B = rowB * 4 + columnB;
-		return sortID_A - sortID_B;
-	});
-}
-
-export function REMOVE_LOAD_SNIPPET_ACTION(value: any) {
-	var i = 0;
-	while (i < LOAD_SNIPPET_ACTIONS.length) {
-		if (LOAD_SNIPPET_ACTIONS[i] === value) {
-			LOAD_SNIPPET_ACTIONS.splice(i, 1);
-		} else {
-			++i;
-		}
-	}
-}
-
 export function SCROLL_RERENDER_ACTIONS() {
 	for (const action of streamDeck.actions) {
 		if (action.manifestId === "net.phimai.snippet-mix-plugin.load-snippet") {
@@ -72,6 +48,7 @@ export function SCROLL_RERENDER_ACTIONS() {
 		} else if (action.manifestId === "net.phimai.snippet-mix-plugin.navigate.scroll") {
 			RenderScroll(action);
 		} else if (action.manifestId === "net.phimai.snippet-mix-plugin.navigate.open-more") {
+			RenderMore(action);
 		}
 	}
 }
