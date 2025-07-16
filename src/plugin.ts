@@ -1,10 +1,10 @@
 import streamDeck, { LogLevel } from "@elgato/streamdeck";
 
 import { ClearAll } from "./actions/clear-all";
-import { LoadSnippet } from "./actions/load-snippet/load-snippet";
+import { LoadSnippet, RenderSnippet } from "./actions/load-snippet/load-snippet";
 import { CloseSubmenu } from "./actions/navigate/close-submenu";
 import { OpenMore } from "./actions/navigate/open-more";
-import { Scroll } from "./actions/navigate/scroll";
+import { RenderScroll, Scroll } from "./actions/navigate/scroll";
 import { ToggleSave } from "./actions/toggle-save";
 import { getJsonDataSync } from "./utils/JSONUtils";
 
@@ -61,6 +61,17 @@ export function REMOVE_LOAD_SNIPPET_ACTION(value: any) {
 			LOAD_SNIPPET_ACTIONS.splice(i, 1);
 		} else {
 			++i;
+		}
+	}
+}
+
+export function SCROLL_RERENDER_ACTIONS() {
+	for (const action of streamDeck.actions) {
+		if (action.manifestId === "net.phimai.snippet-mix-plugin.load-snippet") {
+			RenderSnippet(action);
+		} else if (action.manifestId === "net.phimai.snippet-mix-plugin.navigate.scroll") {
+			RenderScroll(action);
+		} else if (action.manifestId === "net.phimai.snippet-mix-plugin.navigate.open-more") {
 		}
 	}
 }

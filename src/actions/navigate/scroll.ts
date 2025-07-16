@@ -1,7 +1,6 @@
 import streamDeck, {
 	action,
 	DidReceiveSettingsEvent,
-	type JsonObject,
 	type KeyDownEvent,
 	SingletonAction,
 	WillAppearEvent,

@@ -6,7 +6,6 @@ import streamDeck, {
 	WillAppearEvent,
 	WillDisappearEvent,
 } from "@elgato/streamdeck";
-import { strictEqual } from "assert";
 import path from "path";
 
 import { PAGES_DATA, PUSH_LOAD_SNIPPET_ACTION, REMOVE_LOAD_SNIPPET_ACTION, SCROLL_OFFSET } from "../../plugin";
@@ -190,6 +189,8 @@ export async function RenderSnippet(action: any, snippetSettings?: LoadSnippetSe
 		action.coordinates.column,
 	);
 
+	//action.setState("0");
+
 	if (id !== null) {
 		let PATH_SNIPPETS = "data/snippets.json";
 		let snippet: Snippet | null = getSnippetInfo(PATH_SNIPPETS, id);
@@ -207,14 +208,14 @@ export async function RenderSnippet(action: any, snippetSettings?: LoadSnippetSe
 
 		await action.setImage(`data:image/svg+xml,${encodeURIComponent(svg)}`);
 
-		action.setState("1");
+		//action.setState("1");
 		action.setSettings({
 			button_used: true,
 			snippet_id: id,
 			snippet_active: false,
 		});
 	} else {
-		action.setState("0");
+		//action.setState("0");
 		action.setImage("");
 		action.setSettings({
 			button_used: false,
