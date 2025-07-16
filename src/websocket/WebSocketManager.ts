@@ -53,7 +53,8 @@ export class WebSocketManager {
 			RERENDER_SNIPPET_ACTIONS();
 		} else if (id === "SnippetsUpdate") {
 			//setServerSnippets(data);
-			SET_SNIPPET_DATA(data.snippets);
+			//streamDeck.logger.info("SNIPPETSUPDATE", data);
+			SET_SNIPPET_DATA(data);
 			RERENDER_SNIPPET_ACTIONS();
 		} else if (id === "PagesUpdate") {
 			//setServerSnippets(data);
