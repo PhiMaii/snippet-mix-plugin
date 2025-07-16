@@ -1,6 +1,7 @@
 import streamDeck, { LogLevel } from "@elgato/streamdeck";
 
 import { ClearAll } from "./actions/clear-all";
+import { Load } from "./actions/load";
 import { LoadSnippet, RenderSnippet } from "./actions/load-snippet/load-snippet";
 import { CloseSubmenu } from "./actions/navigate/close-submenu";
 import { OpenMore, RenderMore } from "./actions/navigate/open-more";
@@ -43,6 +44,7 @@ streamDeck.actions.registerAction(new ClearAll());
 streamDeck.actions.registerAction(new ToggleSave());
 streamDeck.actions.registerAction(new Start());
 streamDeck.actions.registerAction(new Stop());
+streamDeck.actions.registerAction(new Load());
 
 // Finally, connect to the Stream Deck.
 streamDeck.connect();

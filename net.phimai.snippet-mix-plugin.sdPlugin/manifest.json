@@ -119,6 +119,17 @@
                     "Image": "imgs/actions/stop/key"
                 }
             ]
+        },
+        {
+            "Name": "Load",
+            "UUID": "net.phimai.snippet-mix-plugin.load",
+            "Icon": "imgs/actions/load/icon",
+            "Tooltip": "Loads a snippet with just the selected information",
+            "States": [
+                {
+                    "Image": "imgs/actions/load/key"
+                }
+            ]
         }
     ],
     "Category": "Snippet Mix",
