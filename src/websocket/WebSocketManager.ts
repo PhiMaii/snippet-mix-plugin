@@ -4,7 +4,7 @@ import { MessageEvent, WebSocket } from "ws";
 import { RERENDER_SNIPPET_ACTIONS, SET_PAGES_DATA, SET_SNIPPET_DATA } from "../plugin";
 import { isJson } from "../utils/JSONUtils";
 
-class WebSocketManager {
+export class WebSocketManager {
 	private ws: null | WebSocket = null;
 	private isConnected = false;
 
@@ -25,7 +25,7 @@ class WebSocketManager {
 	}
 
 	onMessage(event: MessageEvent) {
-		console.log("RECIEVED:", event.data);
+		streamDeck.logger.info("RECIEVED:", event.data);
 
 		if (typeof event.data !== "string") {
 			throw new Error("Non String based Json Message Recieved");
@@ -38,7 +38,7 @@ class WebSocketManager {
 		const message = JSON.parse(event.data);
 
 		if (message.id === undefined || message.data === undefined) {
-			console.error("Message structure is invalid");
+			streamDeck.logger.error("Message structure is invalid");
 			return;
 		}
 
