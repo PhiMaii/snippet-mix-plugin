@@ -97,6 +97,28 @@
                     "Image": "imgs/actions/edit-snippet-menu/key-off"
                 }
             ]
+        },
+        {
+            "Name": "Start",
+            "UUID": "net.phimai.snippet-mix-plugin.start",
+            "Icon": "imgs/actions/start/icon",
+            "Tooltip": "Opens the snippet mix profile and starts the websocket connection",
+            "States": [
+                {
+                    "Image": "imgs/actions/start/key"
+                }
+            ]
+        },
+        {
+            "Name": "Stop",
+            "UUID": "net.phimai.snippet-mix-plugin.stop",
+            "Icon": "imgs/actions/stop/icon",
+            "Tooltip": "Deletes all snippets after confirmation by holding the button for 3 seconds",
+            "States": [
+                {
+                    "Image": "imgs/actions/stop/key"
+                }
+            ]
         }
     ],
     "Category": "Snippet Mix",

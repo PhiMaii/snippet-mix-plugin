@@ -5,6 +5,8 @@ import { LoadSnippet, RenderSnippet } from "./actions/load-snippet/load-snippet"
 import { CloseSubmenu } from "./actions/navigate/close-submenu";
 import { OpenMore, RenderMore } from "./actions/navigate/open-more";
 import { RenderScroll, Scroll } from "./actions/navigate/scroll";
+import { Start } from "./actions/start";
+import { Stop } from "./actions/stop";
 import { ToggleSave } from "./actions/toggle-save";
 import { getJsonDataSync } from "./utils/JSONUtils";
 
@@ -18,6 +20,8 @@ streamDeck.actions.registerAction(new OpenMore());
 streamDeck.actions.registerAction(new CloseSubmenu());
 streamDeck.actions.registerAction(new ClearAll());
 streamDeck.actions.registerAction(new ToggleSave());
+streamDeck.actions.registerAction(new Start());
+streamDeck.actions.registerAction(new Stop());
 
 // Finally, connect to the Stream Deck.
 streamDeck.connect();
