@@ -188,7 +188,7 @@ export async function RenderSnippet(action: any, snippetSettings?: LoadSnippetSe
 		let PATH_SNIPPETS = "data/snippets.json";
 		let snippet: Snippet | null = getSnippetInfo(PATH_SNIPPETS, id);
 
-		streamDeck.logger.info(snippetSettings);
+		streamDeck.logger.info("ICON         :", snippet?.snippet_icon.replace(/^(fa-solid|fa-regular)\s?/, ""));
 
 		const svg = getIconSVG(
 			id,
@@ -196,7 +196,7 @@ export async function RenderSnippet(action: any, snippetSettings?: LoadSnippetSe
 			snippet?.snippet_name ?? "null",
 			snippet?.snippet_color[1] ?? "NaN",
 			snippetSettings?.snippet_active ?? false,
-			snippet?.snippet_icon ?? "fa-cube",
+			snippet?.snippet_icon.replace(/^(fa-solid|fa-regular)\s?/, "") ?? "fa-cube",
 		);
 
 		await action.setImage(`data:image/svg+xml,${encodeURIComponent(svg)}`);
