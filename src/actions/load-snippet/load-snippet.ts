@@ -10,7 +10,7 @@ import path from "path";
 import { PAGES_DATA, SCROLL_OFFSET } from "../../plugin";
 import { getIconSVG } from "../../utils/Images";
 import "../../utils/JSONUtils";
-import { getJsonData, getJsonDataSync, getSnippetIDAtCoordinates, getSnippetInfo } from "../../utils/JSONUtils";
+import { getJsonData, getSnippetIDAtCoordinates, getSnippetInfo } from "../../utils/JSONUtils";
 
 @action({ UUID: "net.phimai.snippet-mix-plugin.load-snippet" })
 export class LoadSnippet extends SingletonAction<LoadSnippetSettings> {
@@ -23,16 +23,16 @@ export class LoadSnippet extends SingletonAction<LoadSnippetSettings> {
 
 	GLOBAL_SETTINGS = {};
 
-	PAGES_DATA: any[];
+	//PAGES_DATA: any[];
 
 	constructor() {
 		super();
 
 		//this.actions;
 
-		this.PAGES_DATA = getJsonDataSync(this.PATH_PAGES);
+		//this.PAGES_DATA = getJsonDataSync(this.PATH_PAGES);
 
-		streamDeck.logger.info("CONSTRUCTOR CALLED", JSON.stringify(this.PAGES_DATA, null, "\t"));
+		streamDeck.logger.info("CONSTRUCTOR CALLED", JSON.stringify(PAGES_DATA, null, "\t"));
 
 		//SET_LOAD_SNIPPET_ACTIONS(this.actions);
 	}
@@ -124,7 +124,7 @@ export class LoadSnippet extends SingletonAction<LoadSnippetSettings> {
 
 		//const pagesData = await getJsonData(this.PATH_PAGES);
 
-		const id: number | null = getSnippetIDAtCoordinates(this.PAGES_DATA, row, column);
+		const id: number | null = getSnippetIDAtCoordinates(PAGES_DATA, row, column);
 
 		streamDeck.logger.info("Snipped with id: ", id);
 
