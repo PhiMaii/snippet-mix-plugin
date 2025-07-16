@@ -18,7 +18,11 @@ export class Start extends SingletonAction<JsonObject> {
 
 		let settings = ev.payload.settings;
 
-		WEBSOCKET_MANAGER.CONNECT_WEBSOCKET(settings.ws.host, settings.ws.port, settings.ws.show_name);
+		WEBSOCKET_MANAGER.CONNECT_WEBSOCKET(
+			settings.ws.host ?? "localhost",
+			settings.ws.port ?? "8080",
+			settings.ws.show_name ?? "Show 1",
+		);
 	}
 
 	override async onDidReceiveSettings(ev: DidReceiveSettingsEvent<StartSettings>): Promise<void> {
