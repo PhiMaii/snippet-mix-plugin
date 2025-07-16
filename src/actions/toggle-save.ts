@@ -44,6 +44,8 @@ export class ToggleSave extends SingletonAction<JsonObject> {
 					break;
 			}
 		} else ev.action.setTitle("");
+		//@ts-ignore
+		ev.action.setState(0);
 
 		// ev.action.setImage("imgs/actions/edit-snippet-menu/key-off");
 	}
