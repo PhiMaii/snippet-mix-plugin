@@ -1,4 +1,4 @@
-import streamDeck, { JsonObject } from "@elgato/streamdeck";
+import streamDeck from "@elgato/streamdeck";
 import { readFile } from "fs/promises";
 
 let cachedData: any = null;
@@ -7,6 +7,14 @@ export async function getJsonData(filePath: string): Promise<any[]> {
   // if (cachedData === null) {
   const fileContents = await readFile(filePath, "utf-8");
   cachedData = JSON.parse(fileContents);
+  // }
+  return cachedData;
+}
+
+export function getJsonDataSync(filePath: string): any[] {
+  // if (cachedData === null) {
+  const fileContents = fs.readFileSync(filePath, "utf-8");
+  const cachedData: any[] = JSON.parse(fileContents);
   // }
   return cachedData;
 }

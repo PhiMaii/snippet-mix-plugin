@@ -6,7 +6,12 @@ import streamDeck, {
   SingletonAction,
   WillAppearEvent,
 } from "@elgato/streamdeck";
-import { LoadSnippet } from "../load-snippet/load-snippet";
+import {
+  LOAD_SNIPPET_ACTIONS,
+  SCROLL_OFFSET,
+  SET_SCROLL_OFFSET,
+} from "../../plugin";
+import { RenderSnippet } from "../load-snippet/load-snippet";
 /**
  * An action that logs a Stream Deck key press.
  */
@@ -19,51 +24,64 @@ export class Scroll extends SingletonAction {
 
   scrollAmount: number = 1; // Default scroll amount
 
-  override onKeyDown(ev: KeyDownEvent<JsonObject>): void | Promise<void> {
-    streamDeck.logger.info("Scroll button pressed");
-    // const currentScrollAmount =
-    //   streamDeck.settings.getGlobalSettings<ScrollSettings>();
+  constructor() {
+    super();
+    //Reset scroll_offset to 0 on plugin restart/streamdeck software start
+  }
 
-    // streamDeck.logger.info(currentScrollAmount);
+  override async onKeyDown(ev: KeyDownEvent<JsonObject>) {
+    streamDeck.logger.info("Scroll button pressed");
+    /*const scrollSettings =
+            await streamDeck.settings.getGlobalSettings<GlobalScrollSettings>();*/
+    /* const newNbr = {
+            scroll_offset: Math.random(),
+        };
+        await streamDeck.settings.setGlobalSettings(newNbr);
+        streamDeck.logger.info("SET", newNbr); */
+
+    //@ts-ignore
+    /* SET_SCROLL_OFFSET(SCROLL_OFFSET - 1);
+        streamDeck.logger.info("ACTIONS: ", LOAD_SNIPPET_ACTIONS);
+        for (const action of LOAD_SNIPPET_ACTIONS) {
+            // RERENDER
+            //action.setTitle("RR");
+            //action.setImage(" ");
+            RenderSnippet(action);
+            //action.
+        }
+        return; */
+
+    /* streamDeck.logger.info("ScrollSettings", scrollSettings);
+
+        if (scrollSettings.scroll_offset === undefined) {
+            scrollSettings.scroll_offset = 0;
+        } */
 
     if (ev.payload.settings.scroll_direction === "up") {
-      streamDeck.logger.info("Requesting scroll up");
-      streamDeck.settings.setGlobalSettings({
-        request_scroll: true,
-      });
+      if (SCROLL_OFFSET <= 0) {
+        ev.action.showAlert();
+        return;
+      }
+
+      SET_SCROLL_OFFSET(SCROLL_OFFSET - 1);
+      for (const action of LOAD_SNIPPET_ACTIONS) {
+        RenderSnippet(action);
+      }
+
+      ev.action.showOk();
     } else if (ev.payload.settings.scroll_direction === "down") {
-      streamDeck.logger.info("Requesting scroll down");
-      streamDeck.settings.setGlobalSettings({
-        request_scroll: true,
-      });
+      SET_SCROLL_OFFSET(SCROLL_OFFSET + 1);
+      for (const action of LOAD_SNIPPET_ACTIONS) {
+        RenderSnippet(action);
+      }
+
+      await ev.action.showOk();
     } else {
       streamDeck.logger.warn(
         "Unknown scroll direction",
         ev.payload.settings.scroll_direction
       );
     }
-
-    streamDeck.actions.forEach((action) => {
-      // streamDeck.logger.info(action);
-      if (action.manifestId === "net.phimai.snippet-mix-plugin.load-snippet") {
-        // streamDeck.logger.info("Updating action settings for scroll", action);
-        //@ts-ignore
-        // let currentRow = action.getSettings.load_snippet_from_row;
-        // streamDeck.logger.info(currentRow);
-        //@ts-ignore
-        // action.setSettings({
-        //@ts-ignore
-        // row: action.getSettings().row + this.scrollAmount,
-        //@ts-ignore
-        // column: action.getSettings().column,
-        // });
-        // streamDeck.logger.info("updating scrolling for: ", action);
-      }
-    });
-
-    // streamDeck.settings.getGlobalSettings<ScrollSettings>().then((settings) => {
-    //   streamDeck.logger.info("Current scroll settings", settings);
-    // });
   }
 
   override onWillAppear(ev: WillAppearEvent<JsonObject>): Promise<void> | void {
@@ -114,7 +132,6 @@ type ScrollSettings = {
   scroll_amount: number;
 };
 
-type globalSettings = {
-  request_scroll: boolean;
-  current_scroll_amount: number;
+export type GlobalScrollSettings = {
+  scroll_offset: number;
 };
