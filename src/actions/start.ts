@@ -10,13 +10,15 @@ import { WEBSOCKET_MANAGER } from "../plugin";
 
 @action({ UUID: "net.phimai.snippet-mix-plugin.start" })
 export class Start extends SingletonAction<JsonObject> {
-	override async onKeyDown(ev: KeyDownEvent<JsonObject>): Promise<void> {
+	override async onKeyDown(ev: KeyDownEvent<StartSettings>): Promise<void> {
 		streamDeck.logger.warn("Starting Snippet-Mix", await streamDeck.settings.getGlobalSettings());
 		// Update the count from the settings.
 
 		streamDeck.profiles.switchToProfile(ev.action.device.id, "SnippetMix-Default", 0);
 
-		WEBSOCKET_MANAGER.CONNECT_WEBSOCKET("localhost", 8080, "default");
+		let settings = ev.payload.settings;
+
+		WEBSOCKET_MANAGER.CONNECT_WEBSOCKET(settings.ws.host, settings.ws.port, settings.ws.show_name);
 	}
 
 	override async onDidReceiveSettings(ev: DidReceiveSettingsEvent<StartSettings>): Promise<void> {
