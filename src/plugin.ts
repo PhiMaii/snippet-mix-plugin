@@ -1,11 +1,14 @@
 import streamDeck, { LogLevel } from "@elgato/streamdeck";
 
 import { ClearAll } from "./actions/clear-all";
+import { HotReload } from "./actions/hot-reload";
 import { Load } from "./actions/load";
 import { LoadSnippet, RenderSnippet } from "./actions/load-snippet/load-snippet";
 import { CloseSubmenu } from "./actions/navigate/close-submenu";
 import { OpenMore, RenderMore } from "./actions/navigate/open-more";
 import { RenderScroll, Scroll } from "./actions/navigate/scroll";
+import { LoadShowOrPage } from "./actions/settings/load-show-page";
+import { OpenShowOrPageSelector } from "./actions/settings/open-show-page-selector";
 import { Start, StartSettings } from "./actions/start";
 import { Stop } from "./actions/stop";
 import { ToggleSave } from "./actions/toggle-save";
@@ -64,6 +67,9 @@ streamDeck.actions.registerAction(new ToggleSave());
 streamDeck.actions.registerAction(new Start());
 streamDeck.actions.registerAction(new Stop());
 streamDeck.actions.registerAction(new Load());
+streamDeck.actions.registerAction(new LoadShowOrPage());
+streamDeck.actions.registerAction(new OpenShowOrPageSelector());
+streamDeck.actions.registerAction(new HotReload());
 
 // TODO: FIX: Zerstört evtl mehrere START btns
 streamDeck.actions.onWillAppear(async (ev) => {

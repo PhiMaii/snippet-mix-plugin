@@ -131,6 +131,43 @@
                     "Image": "imgs/actions/load/key"
                 }
             ]
+        },
+        {
+            "Name": "Show/Page selector",
+            "UUID": "net.phimai.snippet-mix-plugin.settings.open-show-or-page-selector",
+            "Icon": "imgs/actions/settings/open-page-or-show-selector/icon",
+            "Tooltip": "Opens a submenu to select a Shwo and Page to activate",
+            "PropertyInspectorPath": "ui/show-page-selector.html",
+            "States": [
+                {
+                    "Image": "imgs/actions/settings/open-page-or-show-selector/key"
+                }
+            ]
+        },
+        {
+            "Name": "Load Show/Page",
+            "UUID": "net.phimai.snippet-mix-plugin.settings.load-show-or-page",
+            "Icon": "imgs/actions/settings/load-page-or-show/icon",
+            "Tooltip": "Adaptive button to show available pages and shows to load on press",
+            "DisableAutomaticStates": true,
+            "States": [
+                {
+                    "Image": "imgs/actions/settings/load-page-or-show/page-icon",
+                    "TitleAlignment": "middle"
+                }
+            ]
+        },
+        {
+            "Name": "Hot Reload",
+            "UUID": "net.phimai.snippet-mix-plugin.hot-reload",
+            "Icon": "imgs/actions/hot-reload/icon",
+            "Tooltip": "Hot Reload",
+            "States": [
+                {
+                    "Image": "imgs/actions/hot-reload/key",
+                    "TitleAlignment": "middle"
+                }
+            ]
         }
     ],
     "Category": "Snippet Mix",
