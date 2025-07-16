@@ -27,13 +27,10 @@ streamDeck.connect();
 // });
 
 streamDeck.settings.setGlobalSettings({
-  scroll_offset: 0,
+	scroll_offset: 0,
 });
 
-streamDeck.logger.info(
-  "GLOBAL SETTINGS:",
-  streamDeck.settings.getGlobalSettings()
-);
+streamDeck.logger.info("GLOBAL SETTINGS:", streamDeck.settings.getGlobalSettings());
 
 const PATH_PAGES = "data/pages.json";
 export const PAGES_DATA = getJsonDataSync(PATH_PAGES);
@@ -41,31 +38,31 @@ export const PAGES_DATA = getJsonDataSync(PATH_PAGES);
 export let SCROLL_OFFSET = 0;
 
 export function SET_SCROLL_OFFSET(scroll_offset: number) {
-  SCROLL_OFFSET = scroll_offset;
+	SCROLL_OFFSET = scroll_offset;
 }
 
 export let LOAD_SNIPPET_ACTIONS: any[] = [];
 
 export function PUSH_LOAD_SNIPPET_ACTION(value: any) {
-  LOAD_SNIPPET_ACTIONS.push(value);
-  LOAD_SNIPPET_ACTIONS.sort((actionA, actionB) => {
-    const { row: rowA, column: columnA } = actionA.coordinates;
-    const sortID_A = rowA * 4 + columnA;
-    const { row: rowB, column: columnB } = actionB.coordinates;
-    const sortID_B = rowB * 4 + columnB;
-    return sortID_A - sortID_B;
-  });
+	LOAD_SNIPPET_ACTIONS.push(value);
+	LOAD_SNIPPET_ACTIONS.sort((actionA, actionB) => {
+		const { row: rowA, column: columnA } = actionA.coordinates;
+		const sortID_A = rowA * 4 + columnA;
+		const { row: rowB, column: columnB } = actionB.coordinates;
+		const sortID_B = rowB * 4 + columnB;
+		return sortID_A - sortID_B;
+	});
 }
 
 export function REMOVE_LOAD_SNIPPET_ACTION(value: any) {
-  var i = 0;
-  while (i < LOAD_SNIPPET_ACTIONS.length) {
-    if (LOAD_SNIPPET_ACTIONS[i] === value) {
-      LOAD_SNIPPET_ACTIONS.splice(i, 1);
-    } else {
-      ++i;
-    }
-  }
+	var i = 0;
+	while (i < LOAD_SNIPPET_ACTIONS.length) {
+		if (LOAD_SNIPPET_ACTIONS[i] === value) {
+			LOAD_SNIPPET_ACTIONS.splice(i, 1);
+		} else {
+			++i;
+		}
+	}
 }
 
 /* export function SET_LOAD_SNIPPET_ACTIONS(LOAD_SNIPPET_ACTIONS: any) {
