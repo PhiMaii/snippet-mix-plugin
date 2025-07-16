@@ -10,32 +10,6 @@ import { Stop } from "./actions/stop";
 import { ToggleSave } from "./actions/toggle-save";
 import { getJsonDataSync } from "./utils/JSONUtils";
 
-// We can enable "trace" logging so that all messages between the Stream Deck, and the plugin are recorded. When storing sensitive information
-streamDeck.logger.setLevel(LogLevel.INFO);
-
-// Register the increment action.
-streamDeck.actions.registerAction(new LoadSnippet());
-streamDeck.actions.registerAction(new Scroll());
-streamDeck.actions.registerAction(new OpenMore());
-streamDeck.actions.registerAction(new CloseSubmenu());
-streamDeck.actions.registerAction(new ClearAll());
-streamDeck.actions.registerAction(new ToggleSave());
-streamDeck.actions.registerAction(new Start());
-streamDeck.actions.registerAction(new Stop());
-
-// Finally, connect to the Stream Deck.
-streamDeck.connect();
-
-// streamDeck.settings.onDidReceiveGlobalSettings((ev) => {
-//   streamDeck.logger.info("Global settings received", ev);
-// });
-
-streamDeck.settings.setGlobalSettings({
-	scroll_offset: 0,
-});
-
-streamDeck.logger.info("GLOBAL SETTINGS:", streamDeck.settings.getGlobalSettings());
-
 const PATH_PAGES = "data/pages.json";
 export const PAGES_DATA = getJsonDataSync(PATH_PAGES);
 
@@ -57,11 +31,18 @@ export function SCROLL_RERENDER_ACTIONS() {
 	}
 }
 
-/* export function SET_LOAD_SNIPPET_ACTIONS(LOAD_SNIPPET_ACTIONS: any) {
-    LOAD_SNIPPET_ACTIONS = LOAD_SNIPPET_ACTIONS;
-}
+// We can enable "trace" logging so that all messages between the Stream Deck, and the plugin are recorded. When storing sensitive information
+streamDeck.logger.setLevel(LogLevel.INFO);
 
-export function GET_LOAD_SNIPPET_ACTIONS() {
-    return LOAD_SNIPPET_ACTIONS;
-}
- */
+// Register the increment action.
+streamDeck.actions.registerAction(new LoadSnippet());
+streamDeck.actions.registerAction(new Scroll());
+streamDeck.actions.registerAction(new OpenMore());
+streamDeck.actions.registerAction(new CloseSubmenu());
+streamDeck.actions.registerAction(new ClearAll());
+streamDeck.actions.registerAction(new ToggleSave());
+streamDeck.actions.registerAction(new Start());
+streamDeck.actions.registerAction(new Stop());
+
+// Finally, connect to the Stream Deck.
+streamDeck.connect();
