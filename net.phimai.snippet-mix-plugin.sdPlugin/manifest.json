@@ -99,10 +99,11 @@
             ]
         },
         {
-            "Name": "Start",
+            "Name": "Start Client",
             "UUID": "net.phimai.snippet-mix-plugin.start",
             "Icon": "imgs/actions/start/icon",
             "Tooltip": "Opens the snippet mix profile and starts the websocket connection",
+            "PropertyInspectorPath": "ui/start.html",
             "States": [
                 {
                     "Image": "imgs/actions/start/key"
@@ -110,7 +111,7 @@
             ]
         },
         {
-            "Name": "Stop",
+            "Name": "Stop Client",
             "UUID": "net.phimai.snippet-mix-plugin.stop",
             "Icon": "imgs/actions/stop/icon",
             "Tooltip": "Deletes all snippets after confirmation by holding the button for 3 seconds",
@@ -121,7 +122,7 @@
             ]
         },
         {
-            "Name": "Load",
+            "Name": "Load with settings",
             "UUID": "net.phimai.snippet-mix-plugin.load",
             "Icon": "imgs/actions/load/icon",
             "Tooltip": "Loads a snippet with just the selected information",

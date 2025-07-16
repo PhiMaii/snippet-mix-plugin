@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <title>Start Snippet Mix Settings</title>
+    <meta charset="utf-8" />
+    <script src="https://sdpi-components.dev/releases/v4/sdpi-components.js"></script>
+</head>
+
+<body>
+    <!--
+        Learn more about property inspector components at https://sdpi-components.dev/docs/components
+    -->
+    <sdpi-item label="Host">
+        <sdpi-textfield setting="ws.host" placeholder="Ip address" required>
+        </sdpi-textfield>
+    </sdpi-item>
+    <sdpi-item label="Port">
+        <sdpi-textfield setting="ws.port" placeholder="Port" required>
+        </sdpi-textfield>
+    </sdpi-item>
+    <sdpi-item label="Show name">
+        <sdpi-textfield setting="ws.show_name" placeholder="Show 1" required>
+        </sdpi-textfield>
+    </sdpi-item>
+    <sdpi-item>
+        <sdpi-button onclick="javascript:alert('Hello World')">
+            Connect
+        </sdpi-button>
+    </sdpi-item>
+
+</body>
+
+</html>
