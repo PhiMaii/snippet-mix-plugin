@@ -162,7 +162,7 @@
         },
         {
             "Name": "Hot Reload",
-            "UUID": "net.phimai.snippet-mix-plugin.settings.hot-reload",
+            "UUID": "net.phimai.snippet-mix-plugin.hot-reload",
             "Icon": "imgs/actions/hot-reload/icon",
             "Tooltip": "Hot Reload",
             "States": [
