@@ -6,6 +6,7 @@ import streamDeck, {
 	WillAppearEvent,
 	WillDisappearEvent,
 } from "@elgato/streamdeck";
+import { strictEqual } from "assert";
 import path from "path";
 
 import { PAGES_DATA, PUSH_LOAD_SNIPPET_ACTION, REMOVE_LOAD_SNIPPET_ACTION, SCROLL_OFFSET } from "../../plugin";
@@ -18,8 +19,10 @@ export class LoadSnippet extends SingletonAction<LoadSnippetSettings> {
 	LONG_PRESS_THRESHOLD = 350; // Threshold for long press in milliseconds
 	longPressTimer: ReturnType<typeof setTimeout> | null = null; // Timer for long press
 	longPressFired = false; // Flag to check if long press was fired
-	PATH_PAGES = "data/pages.json";
-	PATH_SNIPPETS = "data/snippets.json";
+
+	PATH_PAGES: string = "data/pages.json";
+	PATH_SNIPPETS: string = "data/snippets.json";
+
 	GLOBAL_SETTINGS = {};
 
 	PAGES_DATA: any[];
@@ -66,14 +69,31 @@ export class LoadSnippet extends SingletonAction<LoadSnippetSettings> {
 	}
 
 	// #####################
-	shortPress(ev: KeyUpEvent<LoadSnippetSettings>): void {
+
+	async shortPress(ev: KeyUpEvent<LoadSnippetSettings>): Promise<void> {
 		streamDeck.logger.info("LoadSnippet button pressed", ev);
 
 		if (ev.payload.settings.button_used === true) {
 			if (ev.payload.settings.snippet_active === false) {
-				// SET ACTIVE
-				const svg = getIconSVG(ev.payload.settings.snippet_id, 11, "Scene an", "#0000ff", true);
-				ev.action.setImage(`data:image/svg+xml,${encodeURIComponent(svg)}`);
+				// let PATH_SNIPPETS = "data/snippets.json";
+				// let snippet_id = ev.payload.settings.snippet_id;
+				// let snippet: Snippet | null = getSnippetInfo(PATH_SNIPPETS, snippet_id);
+				// // SET ACTIVE
+				// const svg = getIconSVG(
+				// 	snippet_id,
+				// 	snippet?.snippet_channels.length ?? 0,
+				// 	snippet?.snippet_name ?? "null",
+				// 	snippet?.snippet_color[1] ?? "NaN",
+				// 	true,
+				// 	snippet?.snippet_icon ?? "fa-cube",
+				// );
+				// ev.action.setImage(`data:image/svg+xml,${encodeURIComponent(svg)}`);
+
+				ev.action.setSettings({
+					snippet_active: true,
+				});
+				//@ts-ignore
+				RenderSnippet(ev.action, await ev.action.getSettings());
 			}
 		}
 	}
@@ -152,7 +172,7 @@ export type Snippet = {
 	snippet_channels: string[];
 };
 
-export async function RenderSnippet(action: any) {
+export async function RenderSnippet(action: any, snippetSettings?: LoadSnippetSettings) {
 	if (action.coordinates === undefined) {
 		action.showAlert();
 		throw new Error("Coordinates undefined!");
@@ -174,18 +194,20 @@ export async function RenderSnippet(action: any) {
 		let PATH_SNIPPETS = "data/snippets.json";
 		let snippet: Snippet | null = getSnippetInfo(PATH_SNIPPETS, id);
 
+		streamDeck.logger.info(snippetSettings);
+
 		const svg = getIconSVG(
 			id,
-			snippet?.snippet_channels.length ?? NaN,
+			snippet?.snippet_channels.length ?? 0,
 			snippet?.snippet_name ?? "null",
 			snippet?.snippet_color[1] ?? "NaN",
-			false,
+			snippetSettings?.snippet_active ?? false,
 			snippet?.snippet_icon ?? "fa-cube",
 		);
 
 		await action.setImage(`data:image/svg+xml,${encodeURIComponent(svg)}`);
 
-		action.setState("0");
+		action.setState("1");
 		action.setSettings({
 			button_used: true,
 			snippet_id: id,
