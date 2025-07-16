@@ -67,8 +67,8 @@ streamDeck.actions.registerAction(new ToggleSave());
 streamDeck.actions.registerAction(new Start());
 streamDeck.actions.registerAction(new Stop());
 streamDeck.actions.registerAction(new Load());
-// streamDeck.actions.registerAction(new LoadShowOrPage());
-// streamDeck.actions.registerAction(new OpenShowOrPageSelector());
+streamDeck.actions.registerAction(new LoadShowOrPage());
+streamDeck.actions.registerAction(new OpenShowOrPageSelector());
 streamDeck.actions.registerAction(new HotReload());
 
 // Finally, connect to the Stream Deck.
