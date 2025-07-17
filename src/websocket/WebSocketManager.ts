@@ -6,7 +6,7 @@ import { isJson } from "../utils/JSONUtils";
 
 export class WebSocketManager {
 	public ws: null | WebSocket = null;
-	private isConnected = false;
+	public isConnected = false;
 
 	CONNECT_WEBSOCKET(host: string, port: number, showName: string) {
 		if (this.ws !== null) {
