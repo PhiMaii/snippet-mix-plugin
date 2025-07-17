@@ -29,10 +29,11 @@ export function getIconSVG(
 	id: number,
 	channels: number,
 	name: string,
-	color: string,
+	colorString: string,
 	active: boolean,
 	icon?: string,
 ): string {
+	const color = convertToBeautifulColor(colorString);
 	let textColor: string = getTextColor(color);
 	return `<?xml version="1.0" encoding="utf-8"?>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -48,6 +49,36 @@ export function getIconSVG(
         <ellipse style="fill: none; stroke-width: 5px; stroke: rgb(255, 255, 255); ${active ? "visibility: hidden;" : ""}" cx="80" cy="80" rx="40" ry="40"/>
         ${active ? '<ellipse style="fill: rgb(42, 255, 0);" cx="80" cy="80" rx="40" ry="40"/>' : ""}
         </svg>`;
+}
+
+export function convertToBeautifulColor(color: string) {
+	if (color === "cyan") {
+		return "#4aa5e2";
+	} else if (color === "green") {
+		return "rgb(54, 179, 110)";
+	}
+	return color;
+
+	// DISABLED
+	if (color === "purple") {
+		return "#651c8c";
+	} else if (color === "magenta") {
+		return "#e7268a";
+	} else if (color === "red") {
+		return "#d92b2b";
+	} else if (color === "orange") {
+		return "#e5742e";
+	} else if (color === "blue") {
+		return "#1745e2";
+	} else if (color === "cyan") {
+		return "#008ae7";
+	} else if (color === "green") {
+		return "#1ca36c";
+	} else if (color === "gray") {
+		return "#a1a1a5";
+	} /* if(color === "yellow")*/ else {
+		return "#e5cf2e";
+	}
 }
 
 function getTextColor(backgroundColor: string): string {
