@@ -20,6 +20,14 @@ export class WebSocketManager {
 		this.ws.onerror = this.onError;
 	}
 
+	sendJSONMessage(msg: Object) {
+		if (this.ws !== null) {
+			this.ws.send(JSON.stringify(msg));
+		} else {
+			throw new Error("Can not send message, because WS is not connected");
+		}
+	}
+
 	onOpen() {
 		streamDeck.logger.info("WS Connected");
 	}

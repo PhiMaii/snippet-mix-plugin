@@ -60,6 +60,10 @@ export function getSnippetInfo(filePath: string, id: number): Snippet | null {
 	return result;
 }
 
+export function getSnippetByID(id: number) {
+	return SNIPPET_DATA.find((s) => s.snippetID === id);
+}
+
 export function isJson(str: string) {
 	try {
 		JSON.parse(str);

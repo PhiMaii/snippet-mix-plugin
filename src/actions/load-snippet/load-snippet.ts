@@ -7,10 +7,10 @@ import streamDeck, {
 } from "@elgato/streamdeck";
 import path from "path";
 
-import { PAGES_DATA, SCROLL_OFFSET } from "../../plugin";
+import { PAGES_DATA, SCROLL_OFFSET, WEBSOCKET_MANAGER } from "../../plugin";
 import { getIconSVG } from "../../utils/Images";
 import "../../utils/JSONUtils";
-import { getJsonData, getSnippetIDAtCoordinates, getSnippetInfo } from "../../utils/JSONUtils";
+import { getJsonData, getSnippetByID, getSnippetIDAtCoordinates, getSnippetInfo } from "../../utils/JSONUtils";
 
 @action({ UUID: "net.phimai.snippet-mix-plugin.load-snippet" })
 export class LoadSnippet extends SingletonAction<LoadSnippetSettings> {
@@ -64,6 +64,33 @@ export class LoadSnippet extends SingletonAction<LoadSnippetSettings> {
 
 	async shortPress(ev: KeyUpEvent<LoadSnippetSettings>): Promise<void> {
 		streamDeck.logger.info("LoadSnippet button pressed", ev);
+
+		const action = ev.action;
+		if (action.coordinates === undefined) {
+			action.showAlert();
+			throw new Error("Coordinates undefined!");
+		}
+
+		const id: number | null = getSnippetIDAtCoordinates(
+			PAGES_DATA,
+			action.coordinates.row + SCROLL_OFFSET,
+			action.coordinates.column,
+		);
+
+		streamDeck.logger.info("LOAD ID:", id);
+
+		if (id !== null) {
+			let snippet: any = getSnippetByID(id);
+			streamDeck.logger.info("GOT SNIPPET", snippet);
+			WEBSOCKET_MANAGER.sendJSONMessage({
+				id: "LOAD_SNIPPET_OBJ",
+				data: {
+					snippetObj: snippet,
+				},
+			});
+		} else {
+			streamDeck.logger.error("CANT LOAD: SNIPPET ID IS UNDEFINED");
+		}
 
 		if (ev.payload.settings.button_used === true) {
 			if (ev.payload.settings.snippet_active === false) {
